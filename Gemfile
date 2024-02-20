@@ -48,6 +48,7 @@ gem "bootsnap", require: false
 
 # for webscraping, from article https://medium.com/@umair.khalid_87725/web-scraping-with-ruby-on-rails-d1cf7a14800d
 gem "nokogiri"
+gem "open-uri"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
