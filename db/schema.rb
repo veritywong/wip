@@ -57,6 +57,7 @@ ActiveRecord::Schema[7.1].define(version: 11) do
 
   create_table "exhibitions", force: :cascade do |t|
     t.string "title"
+    t.text "description"
     t.string "url"
     t.string "image_url"
     t.datetime "start_date"
