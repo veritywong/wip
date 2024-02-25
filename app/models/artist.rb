@@ -1,12 +1,6 @@
-class Artist < ApplicationRecord#
-    has_many :gallery_artists
-    has_many :galleries, through :gallery_artists
-
-    has_many :exhibition_artists
-    has_many :exhibitions, through :exhibition_artists
-
-    has_many :artist_countries
-    has_many :countries, through: :artist_countries
+class Artist < ApplicationRecord
+    belongs_to :creatives, polymorphic: true
+    has_many :countries, as: :placeable
 
     validates_presence_of :name, :description
 

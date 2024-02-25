@@ -52,3 +52,10 @@ OpeningHours
 - thursday
 -friday
 - saturday
+
+
+"//img.artrabbit.com/events/yayoi-kusama-infinity-mirror-rooms/images/9Wqy2SlupKur/350x233/kusa714-infinity-mirrored-room-filled-with-the-brilliance-of-life-2011-a.jpg 350w, //img.artrabbit.com/events/yayoi-kusama-infinity-mirror-rooms/images/HTOLNE0gzFEa/420x280/kusa714-infinity-mirrored-room-filled-with-the-brilliance-of-life-2011-a.jpg 420w,//img.artrabbit.com/events/yayoi-kusama-infinity-mirror-rooms/images/E2y2rMdxR2U5/680x453/kusa714-infinity-mirrored-room-filled-with-the-brilliance-of-life-2011-a.jpg 680w,//img.artrabbit.com/events/yayoi-kusama-infinity-mirror-rooms/images/zowp5Kiiu5Jr/994x662/kusa714-infinity-mirrored-room-filled-with-the-brilliance-of-life-2011-a.jpg 994w,//img.artrabbit.com/events/yayoi-kusama-infinity-mirror-rooms/images/rP9EQegy300U/1120x746/kusa714-infinity-mirrored-room-filled-with-the-brilliance-of-life-2011-a.jpg 1120w"
+
+.gsub(/.*\/\/([^ ]*).*/, '\1') # selected the last section after //
+
+gsub(/(\s+).*/, '')
