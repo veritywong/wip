@@ -6,4 +6,6 @@ class ExhibitionsController < ApplicationController
     def show
         
     end
+
+    
 end

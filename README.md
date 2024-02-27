@@ -59,3 +59,59 @@ OpeningHours
 .gsub(/.*\/\/([^ ]*).*/, '\1') # selected the last section after //
 
 gsub(/(\s+).*/, '')
+
+
+class CreateArtists < ActiveRecord::Migration[7.1]
+    def change
+        create_table :artists do |t|
+        t.string :name
+        t.text :description
+        t.references :creatives, polymorphic: true
+
+        t.timestamps
+        end
+    end
+end
+
+
+
+class ArtistBase < ApplicationRecord
+    has_one :exhibition_artist, as: :artist
+    has_one :gallery_artist, as: :artist
+    self.abstract_class = true
+    # has_many :artist_countries
+    # has_many :countries, through: :artist_countries
+    # delegate :name, :description, :discipline to: :exhibition_artist # painter, printing, sculpture 
+
+end
+
+#exhibition has exhibition_artists, artists are polymorphic 'painter x', 'scultor y', create an artist-type e.g. Musician, Author, Writer
+
+
+class Gallery < ApplicationRecord
+    belongs_to :country
+    has_many :gallery_artists
+    has_many :artists, through: :gallery_artists
+
+    has_many :gallery_exhibitions
+    has_many :exhibitions, through: :gallery_exhibitions
+
+    has_many :opening_times
+
+    # validates_presence_of :name, :address_line_1, :town, :postcode
+end
+
+class CreateCommunitySpaces < ActiveRecord::Migration[7.1]
+    def change
+        create_table :community_spaces do |t|
+          t.integer :city_id
+          t.string :name
+          t.string :address_line_1
+          t.string :address_line_2
+          t.string :address_line_3
+          t.string :postcode
+  
+          t.timestamps
+        end
+      end
+end
