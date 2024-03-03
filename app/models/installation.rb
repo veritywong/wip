@@ -1,0 +1,3 @@
+class Installation < ArtBase
+    
+end

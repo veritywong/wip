@@ -10,9 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 13) do
+ActiveRecord::Schema[7.1].define(version: 15) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "art_works", force: :cascade do |t|
+    t.bigint "artist_id"
+    t.string "art_type"
+    t.bigint "art_id"
+    t.string "taggable_type"
+    t.bigint "taggable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["art_type", "art_id"], name: "index_art_works_on_art"
+    t.index ["artist_id"], name: "index_art_works_on_artist_id"
+    t.index ["taggable_type", "taggable_id"], name: "index_art_works_on_taggable"
+  end
 
   create_table "artist_cities", force: :cascade do |t|
     t.bigint "artist_id"
@@ -37,22 +50,20 @@ ActiveRecord::Schema[7.1].define(version: 13) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "commercial_spaces", force: :cascade do |t|
-    t.integer "city_id"
-    t.string "name"
-    t.string "address_line_1"
-    t.string "address_line_2"
-    t.string "address_line_3"
-    t.string "postcode"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "countries", force: :cascade do |t|
     t.string "name"
     t.string "country_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "exhibition_art_works", force: :cascade do |t|
+    t.bigint "exhibition_id"
+    t.bigint "art_work_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["art_work_id"], name: "index_exhibition_art_works_on_art_work_id"
+    t.index ["exhibition_id"], name: "index_exhibition_art_works_on_exhibition_id"
   end
 
   create_table "exhibition_artists", force: :cascade do |t|
@@ -73,18 +84,28 @@ ActiveRecord::Schema[7.1].define(version: 13) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "galleries", force: :cascade do |t|
+    t.integer "city_id"
+    t.string "type", null: false
+    t.string "name"
+    t.string "address_line_1"
+    t.string "address_line_2"
+    t.string "address_line_3"
+    t.string "postcode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "gallery_artists", force: :cascade do |t|
-    t.string "gallery_type"
     t.bigint "gallery_id"
     t.bigint "artist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["artist_id"], name: "index_gallery_artists_on_artist_id"
-    t.index ["gallery_type", "gallery_id"], name: "index_gallery_artists_on_gallery"
+    t.index ["gallery_id"], name: "index_gallery_artists_on_gallery_id"
   end
 
   create_table "gallery_exhibitions", force: :cascade do |t|
-    t.string "gallery_type"
     t.bigint "gallery_id"
     t.bigint "exhibition_id"
     t.datetime "start_date"
@@ -92,45 +113,59 @@ ActiveRecord::Schema[7.1].define(version: 13) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["exhibition_id"], name: "index_gallery_exhibitions_on_exhibition_id"
-    t.index ["gallery_type", "gallery_id"], name: "index_gallery_exhibitions_on_gallery"
+    t.index ["gallery_id"], name: "index_gallery_exhibitions_on_gallery_id"
   end
 
-  create_table "museums", force: :cascade do |t|
-    t.integer "city_id"
+  create_table "installations", force: :cascade do |t|
     t.string "name"
-    t.string "address_line_1"
-    t.string "address_line_2"
-    t.string "address_line_3"
-    t.string "postcode"
+    t.text "description"
+    t.string "date_of_creation"
+    t.string "medium_1"
+    t.string "medium_2"
+    t.string "medium_3"
+    t.string "medium_4"
+    t.string "medium_5"
+    t.string "medium_6"
+    t.string "medium_7"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "opening_times", force: :cascade do |t|
-    t.string "gallery_type"
-    t.bigint "gallery_id"
+    t.integer "gallery_id"
     t.integer "day_of_week"
     t.time "opens_at"
     t.time "closes_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["gallery_type", "gallery_id"], name: "index_opening_times_on_gallery"
   end
 
-  create_table "sculptors", force: :cascade do |t|
+  create_table "paintings", force: :cascade do |t|
     t.string "name"
     t.text "description"
+    t.string "date_of_creation"
+    t.string "style"
+    t.string "technique"
+    t.string "medium_1"
+    t.string "medium_2"
+    t.string "medium_3"
+    t.string "support"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "sculpture_parks", force: :cascade do |t|
-    t.integer "city_id"
+  create_table "taggings", force: :cascade do |t|
+    t.string "taggable_type"
+    t.bigint "taggable_id"
+    t.bigint "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+    t.index ["taggable_type", "taggable_id"], name: "index_taggings_on_taggable"
+  end
+
+  create_table "tags", force: :cascade do |t|
     t.string "name"
-    t.string "address_line_1"
-    t.string "address_line_2"
-    t.string "address_line_3"
-    t.string "postcode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

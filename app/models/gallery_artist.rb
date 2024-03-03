@@ -1,4 +1,4 @@
 class GalleryArtist < ApplicationRecord
-    belongs_to :gallery, polymorphic: true
+    belongs_to :gallery
     belongs_to :artist
 end
