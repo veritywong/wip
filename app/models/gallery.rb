@@ -2,6 +2,7 @@ class Gallery < ApplicationRecord
     include Taggable
 
     belongs_to :city
+    belongs_to :organisation
 
     has_many :gallery_artists, dependent: :destroy
     has_many :artists, through: :gallery_artists

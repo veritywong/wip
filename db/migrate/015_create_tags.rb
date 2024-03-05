@@ -7,8 +7,8 @@ class CreateTags < ActiveRecord::Migration[7.1]
         end
 
         create_table :taggings do |t|
-            t.references :taggable, polymorphic: true
             t.references :tag
+            t.references :taggable, polymorphic: true
 
             t.timestamps
         end

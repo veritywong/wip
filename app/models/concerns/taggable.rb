@@ -13,14 +13,20 @@ module Taggable
             tags.pluck(:name)
         end
     
-        def tag(name)
-            self.tags << Tag.find_or_create_by(name: name)
+        def add_tag(name)
+            tags << Tag.find_or_create_by(name: name)
         end
+
     end
 
     class_methods do
         def select_all_tagged
             all.select {|item| item.is_tagged?}
         end
+
+        def find_all_with_tag(tag)
+            self.joins(:tags).where(tags: tag)
+        end
+
     end
 end

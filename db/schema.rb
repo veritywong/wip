@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 15) do
+ActiveRecord::Schema[7.1].define(version: 18) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,12 +34,14 @@ ActiveRecord::Schema[7.1].define(version: 15) do
   end
 
   create_table "artists", force: :cascade do |t|
+    t.integer "studio_id"
     t.string "name"
-    t.text "description"
     t.string "website"
     t.string "instagram"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "collective", default: false
   end
 
   create_table "cities", force: :cascade do |t|
@@ -85,8 +87,10 @@ ActiveRecord::Schema[7.1].define(version: 15) do
 
   create_table "galleries", force: :cascade do |t|
     t.integer "city_id"
+    t.integer "organisation_id"
     t.string "type", null: false
     t.string "name"
+    t.string "website"
     t.string "address_line_1"
     t.string "address_line_2"
     t.string "address_line_3"
@@ -139,24 +143,43 @@ ActiveRecord::Schema[7.1].define(version: 15) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "organisations", force: :cascade do |t|
+    t.integer "city_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "paintings", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.string "date_of_creation"
     t.string "style"
     t.string "technique"
+    t.string "support"
     t.string "medium_1"
     t.string "medium_2"
     t.string "medium_3"
-    t.string "support"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "studios", force: :cascade do |t|
+    t.integer "organisation_id"
+    t.string "name"
+    t.string "website"
+    t.string "address_line_1"
+    t.string "address_line_2"
+    t.string "address_line_3"
+    t.string "postcode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "taggings", force: :cascade do |t|
+    t.bigint "tag_id"
     t.string "taggable_type"
     t.bigint "taggable_id"
-    t.bigint "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tag_id"], name: "index_taggings_on_tag_id"

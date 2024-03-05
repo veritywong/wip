@@ -1,5 +1,7 @@
 class Artist < ApplicationRecord
     include Taggable
+    
+    has_one :studio
 
     has_many :art_works, dependent: :destroy
     has_many :paintings, through: :art_works, source: :art, source_type: 'Painting'

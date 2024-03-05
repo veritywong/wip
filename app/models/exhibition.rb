@@ -11,4 +11,5 @@ class Exhibition < ApplicationRecord
   has_many :art_works, through: :exhibition_art_works
   
   # validates_presence_of :title, :url, :img
+  scope :artist, ->(artist) { joins(:artists).where(artists: artist) }
 end
