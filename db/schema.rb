@@ -18,13 +18,10 @@ ActiveRecord::Schema[7.1].define(version: 15) do
     t.bigint "artist_id"
     t.string "art_type"
     t.bigint "art_id"
-    t.string "taggable_type"
-    t.bigint "taggable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["art_type", "art_id"], name: "index_art_works_on_art"
     t.index ["artist_id"], name: "index_art_works_on_artist_id"
-    t.index ["taggable_type", "taggable_id"], name: "index_art_works_on_taggable"
   end
 
   create_table "artist_cities", force: :cascade do |t|
@@ -39,6 +36,8 @@ ActiveRecord::Schema[7.1].define(version: 15) do
   create_table "artists", force: :cascade do |t|
     t.string "name"
     t.text "description"
+    t.string "website"
+    t.string "instagram"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -117,7 +116,7 @@ ActiveRecord::Schema[7.1].define(version: 15) do
   end
 
   create_table "installations", force: :cascade do |t|
-    t.string "name"
+    t.string "title"
     t.text "description"
     t.string "date_of_creation"
     t.string "medium_1"
@@ -141,7 +140,7 @@ ActiveRecord::Schema[7.1].define(version: 15) do
   end
 
   create_table "paintings", force: :cascade do |t|
-    t.string "name"
+    t.string "title"
     t.text "description"
     t.string "date_of_creation"
     t.string "style"

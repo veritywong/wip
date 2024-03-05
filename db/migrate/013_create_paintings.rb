@@ -1,7 +1,7 @@
 class CreatePaintings < ActiveRecord::Migration[7.1]
     def change
       create_table :paintings do |t|
-        t.string :name
+        t.string :title
         t.text :description
         t.string :date_of_creation
         t.string :style

@@ -45,14 +45,14 @@ el_anatsui = Artist.create(name: 'El Anatsui', description: 'More of a weaver as
 yayoi_kusama = Artist.create(name: 'Yayoi Kusama', description: 'Creates installations with sculptures')
 
 # create installations
-chandalier_of_grief = Installation.create(name: 'Chandelier of Grief', date_of_creation: '2016', medium_1: 'chandelier', medium_2: 'steel', medium_3: 'mirrored glass', medium_4: 'acrylic', medium_5: 'motor', medium_6: 'plastic')
-infinity_mirrored_room = Installation.create(name: 'nfinity Mirrored Room – Filled with the Brilliance of Life', date_of_creation: '2011', medium_1: 'mirrored glass', medium_2: 'wood', medium_3: 'aluminium', medium_4: 'plastic', medium_5: 'ceramic', medium_6: 'leds')
-red_moon = Installation.create(name: 'Behind the Red Moon', date_of_creation: '2023', medium_1: 'bottle tops', medium_2: 'copper wire')
+chandalier_of_grief = Installation.create(title: 'Chandelier of Grief', date_of_creation: '2016', medium_1: 'chandelier', medium_2: 'steel', medium_3: 'mirrored glass', medium_4: 'acrylic', medium_5: 'motor', medium_6: 'plastic')
+infinity_mirrored_room = Installation.create(title: 'nfinity Mirrored Room – Filled with the Brilliance of Life', date_of_creation: '2011', medium_1: 'mirrored glass', medium_2: 'wood', medium_3: 'aluminium', medium_4: 'plastic', medium_5: 'ceramic', medium_6: 'leds')
+red_moon = Installation.create(title: 'Behind the Red Moon', date_of_creation: '2023', medium_1: 'bottle tops', medium_2: 'copper wire')
 
 # create paintings = 
-branch_leaves = Painting.create(name: 'No title [Branch, Leaves in Center of Painting]', date_of_creation: '1990-2005', medium_1: 'oil', support: 'salvage wood')
-redons_poppy = Painting.create(name: "Redon's poppy", date_of_creation: '2023', medium_1: 'oil', support: 'birch panel')
-celadon_anemone = Painting.create(name: 'Celadon Anemone', date_of_creation: '2023', medium_1: 'flashe', support: 'linen')
+branch_leaves = Painting.create(title: 'No title [Branch, Leaves in Center of Painting]', date_of_creation: '1990-2005', medium_1: 'oil', support: 'salvage wood')
+redons_poppy = Painting.create(title: "Redon's poppy", date_of_creation: '2023', medium_1: 'oil', support: 'birch panel')
+celadon_anemone = Painting.create(title: 'Celadon Anemone', date_of_creation: '2023', medium_1: 'flashe', support: 'linen')
 
 #create art work
 art_work1 = ArtWork.create(art: chandalier_of_grief, artist: yayoi_kusama) 
@@ -61,6 +61,16 @@ art_work3 = ArtWork.create(art: red_moon, artist: el_anatsui)
 art_work4 = ArtWork.create(art: branch_leaves, artist: bill_lynch) 
 art_work5 = ArtWork.create(art: redons_poppy, artist: ellen_siebers) 
 art_work6 = ArtWork.create(art: celadon_anemone, artist: mary_weatherford) 
+
+painting_inspo = Tag.create(name: 'painting_inspo')
+sculpture_inspo = Tag.create(name: 'sculpture_inspo')
+recycled_material = Tag.create(name: 'recycled_material')
+migration = Tag.create(name: 'migration')
+
+Tagging.create(tag: painting_inspo, taggable: art_work1)
+Tagging.create(tag: sculpture_inspo, taggable: art_work1)
+Tagging.create(tag: recycled_material, taggable: art_work3)
+Tagging.create(tag: migration, taggable: art_work3)
 
 ExhibitionArtWork.create(exhibition: infinity_mirror, art_work: art_work1)
 ExhibitionArtWork.create(exhibition: out_of_earth, art_work: art_work4)
