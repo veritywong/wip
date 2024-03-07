@@ -6,7 +6,7 @@ module Taggable
         has_many :tags, through: :taggings
 
         def is_tagged?
-            tags.present?
+            tags.present? # .any? more appropriate than .present?, which is slower as it's instantiating all of the things. Could make this a que
         end
 
         def tag_names
@@ -21,11 +21,11 @@ module Taggable
 
     class_methods do
         def select_all_tagged
-            all.select {|item| item.is_tagged?}
+            all.select {|item| item.is_tagged?} # loads all into memory, lots of work where.not(nil), replace with database method (make a scope)
         end
 
         def find_all_with_tag(tag)
-            self.joins(:tags).where(tags: tag)
+            joins(:tags).where(tags: tag)
         end
 
     end

@@ -51,6 +51,9 @@ gem "nokogiri"
 gem "open-uri"
 gem 'pry', '~> 0.14.2'
 
+# for fuzzy searching in postgres
+gem 'pg_search', '~> 2.3.6'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]

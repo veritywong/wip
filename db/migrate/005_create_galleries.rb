@@ -3,6 +3,7 @@ class CreateGalleries < ActiveRecord::Migration[7.1]
         create_table :galleries do |t|
           t.integer :city_id
           t.integer :organisation_id
+          t.integer :studio_id
           t.string :type, null: false
           t.string :name
           t.string :website
