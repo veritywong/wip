@@ -5,7 +5,9 @@ class Tag < ApplicationRecord
     has_many :artists, through: :taggings, source: :taggable, source_type: 'Artist'
 
     def self.find_tagged
-        [Gallery.tagged, Exhibition.tagged, ArtWork.tagged, Artist.tagged]
+        all_tagged = []
+        Tagging.pluck(:taggable_type).uniq.each {|type| all_tagged << type.constantize.tagged}
+        all_tagged
     end
 
     # add a method to find an object with multiple tags?
