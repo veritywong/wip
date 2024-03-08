@@ -1,6 +1,6 @@
 class Artist < ApplicationRecord
     include Taggable
-    include PgSearch::Model
+    include Searchable
 
     belongs_to :studio, optional: true
 
@@ -17,18 +17,15 @@ class Artist < ApplicationRecord
     has_many :exhibition_artists, dependent: :destroy
     has_many :exhibitions, through: :exhibition_artists
 
-    # scope :art_works, ->(artist_name) { joins(:art_works).where('artists.name' => artist_name)} # DONE make it fuzzy. Find artist then pass that into the scope
-    # scope :art_works, ->(artist_name) { joins(:art_works).where(art_works: {artist: find_artist(artist_name)})} 
-    scope :art_works, ->(artist_name) { joins(:art_works).where('art_works.artist' => find_artist(artist_name))} # same as above different syntax
+    validates_presence_of :name
 
-    pg_search_scope :kinda_spelled_like,
-                    :against => :name,
-                    :using => :trigram
-
-    # validates_presence_of :name, :description, :discipline to: :exhibition_artist # painter, printing, sculpture 
-
-    def self.find_artist(artist_name)
-        # where('name ILIKE ?', "%#{name}%").first
-        where('dmetaphone(name) = dmetaphone(?)', "#{artist_name}").first
+    def self.art_by(name)
+        artist = find_artist_by_name(name)
+        {paiings: artist.paintings, installations: artist.installations}  if artist
     end
+
+    def find_all_artist_associations
+        {exhibitions: Exhibition.artist(self), galleries: Gallery.artist(self), paintings: paintings, installations: installations, studio: studio}     
+    end
+
 end

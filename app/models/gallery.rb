@@ -1,5 +1,6 @@
 class Gallery < ApplicationRecord
     include Taggable
+    include Searchable
 
     belongs_to :city
     belongs_to :organisation, optional: true
@@ -13,9 +14,9 @@ class Gallery < ApplicationRecord
     
     has_many :opening_times, dependent: :destroy
     
-    # validates_presence_of :name, :address_line_1, :postcode
+    validates_presence_of :name
 
-    scope :by_type, ->(gallery_class) { where('type ILIKE ?', "%#{gallery_class.to_s}%") } # DONE could handle the argument as a string or a class, turn object into a string .to_s, also allow from not capitalized args. Could make this fuzzy
-
+    scope :by_type, ->(gallery_class) { where('type ILIKE ?', "%#{gallery_class.to_s}%") }
+    scope :artist, ->(artist) { joins(:artists).where(artists: artist) }
 
 end
