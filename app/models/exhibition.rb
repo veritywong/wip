@@ -1,6 +1,7 @@
 class Exhibition < ApplicationRecord
   include Taggable
   include Searchable
+  include Attachable
 
   has_many :exhibition_artists, dependent: :destroy
   has_many :artists, through: :exhibition_artists

@@ -1,6 +1,7 @@
 class Artist < ApplicationRecord
     include Taggable
     include Searchable
+    include Attachable
 
     belongs_to :studio, optional: true
 

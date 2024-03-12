@@ -56,7 +56,5 @@ OpeningHours
 #exhibition has exhibition_artists, artists are polymorphic 'painter x', 'scultor y', create an artist-type e.g. Musician, Author, Writer
 
 
-mirror_artwork.images.attach(io: File.open('app/assets/images/infinity_mirror_room.jpg'), filename: 'infinity_mirror_room.jpg', content_type: 'image/jpg')
-
 
 
