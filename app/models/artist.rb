@@ -17,6 +17,8 @@ class Artist < ApplicationRecord
     has_many :exhibition_artists, dependent: :destroy
     has_many :exhibitions, through: :exhibition_artists
 
+    has_many_attached :images
+
     validates_presence_of :name
 
     def self.art_by(name)
@@ -24,8 +26,14 @@ class Artist < ApplicationRecord
         {paiings: artist.paintings, installations: artist.installations}  if artist
     end
 
-    def find_all_artist_associations
-        {exhibitions: Exhibition.artist(self), galleries: Gallery.artist(self), paintings: paintings, installations: installations, studio: studio}     
+    def find_all_associations
+        { exhibitions: Exhibition.artist(self), 
+          galleries: Gallery.artist(self), 
+          paintings: paintings, 
+          installations: installations, 
+          studio: studio,
+          tags: tag_names
+        }     
     end
 
 end

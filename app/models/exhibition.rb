@@ -10,7 +10,9 @@ class Exhibition < ApplicationRecord
 
   has_many :exhibition_art_works, dependent: :destroy
   has_many :art_works, through: :exhibition_art_works
-  
+
+  has_many_attached :images
+
   validates_presence_of :title
 
   scope :artist, ->(artist) { joins(:artists).where(artists: artist) }

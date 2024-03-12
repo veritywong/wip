@@ -46,7 +46,7 @@ yayoi_kusama = Artist.create(name: 'Yayoi Kusama', description: 'Creates install
 
 # create installations
 chandalier_of_grief = Installation.create(title: 'Chandelier of Grief', date_of_creation: '2016', medium_1: 'chandelier', medium_2: 'steel', medium_3: 'mirrored glass', medium_4: 'acrylic', medium_5: 'motor', medium_6: 'plastic')
-infinity_mirrored_room = Installation.create(title: 'nfinity Mirrored Room – Filled with the Brilliance of Life', date_of_creation: '2011', medium_1: 'mirrored glass', medium_2: 'wood', medium_3: 'aluminium', medium_4: 'plastic', medium_5: 'ceramic', medium_6: 'leds')
+infinity_mirrored_room = Installation.create(title: 'Infinity Mirrored Room – Filled with the Brilliance of Life', date_of_creation: '2011', medium_1: 'mirrored glass', medium_2: 'wood', medium_3: 'aluminium', medium_4: 'plastic', medium_5: 'ceramic', medium_6: 'leds')
 red_moon = Installation.create(title: 'Behind the Red Moon', date_of_creation: '2023', medium_1: 'bottle tops', medium_2: 'copper wire')
 
 # create paintings = 

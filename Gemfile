@@ -54,6 +54,12 @@ gem 'pry', '~> 0.14.2'
 # for fuzzy searching in postgres
 gem 'pg_search', '~> 2.3.6'
 
+# image uploading and cropping
+# gem 'carrierwave' # don't really need this if using active record storage 
+gem 'mini_magick'
+
+# gem "ruby-vips" # didn't like this
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
