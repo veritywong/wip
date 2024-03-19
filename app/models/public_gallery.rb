@@ -1,0 +1,3 @@
+class PublicGallery < Gallery
+
+end

@@ -1,3 +1,0 @@
-class CommercialSpace < Gallery
-
-end

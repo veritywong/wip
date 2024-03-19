@@ -1,6 +1,7 @@
 class ArtBase < ApplicationRecord
     include Searchable
     include Attachable
+    include ArtMediumable
 
     self.abstract_class = true
   

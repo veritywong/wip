@@ -7,9 +7,6 @@ class CreatePaintings < ActiveRecord::Migration[7.1]
         t.string :style
         t.string :technique
         t.string :support
-        t.string :medium_1
-        t.string :medium_2
-        t.string :medium_3
   
         t.timestamps
       end

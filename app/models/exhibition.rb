@@ -12,11 +12,14 @@ class Exhibition < ApplicationRecord
   has_many :exhibition_art_works, dependent: :destroy
   has_many :art_works, through: :exhibition_art_works
 
-  has_many_attached :images
+  has_many :events
+
+  has_one_attached :promo_image
+  has_many_attached :pdfs
 
   validates_presence_of :title
 
   scope :artist, ->(artist) { joins(:artists).where(artists: artist) }
-  scope :has_artist, ->(artist_name) { joins(:artists).where(artists: find_artist_by_name(artist_name))} 
+  scope :has_artist, ->(artist_name) { joins(:artists).where(artists: Artist.fuzzy_search(:name, artist_name))} 
 
 end

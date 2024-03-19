@@ -18,16 +18,22 @@ class Artist < ApplicationRecord
     has_many :exhibition_artists, dependent: :destroy
     has_many :exhibitions, through: :exhibition_artists
 
+    has_many :collection_artists
+    has_many :collections, through: :collection_artists
+    
+    has_many :movement_artists
+    has_many :movements, through: :movement_artists
+    
     has_many_attached :images
 
     validates_presence_of :name
 
     def self.art_by(name)
-        artist = find_artist_by_name(name)
-        {paiings: artist.paintings, installations: artist.installations}  if artist
+        artist = fuzzy_search(:name, name)
+        {paintings: artist.paintings, installations: artist.installations}  if artist
     end
 
-    def find_all_associations
+    def all_associations
         { exhibitions: Exhibition.artist(self), 
           galleries: Gallery.artist(self), 
           paintings: paintings, 

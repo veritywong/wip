@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 22) do
+ActiveRecord::Schema[7.1].define(version: 30) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
   enable_extension "pg_trgm"
@@ -38,6 +38,22 @@ ActiveRecord::Schema[7.1].define(version: 22) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "art_media", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "art_medium_entries", force: :cascade do |t|
+    t.bigint "art_medium_id"
+    t.string "art_mediumable_type"
+    t.bigint "art_mediumable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["art_medium_id"], name: "index_art_medium_entries_on_art_medium_id"
+    t.index ["art_mediumable_type", "art_mediumable_id"], name: "index_art_medium_entries_on_art_mediumable"
+  end
+
   create_table "art_works", force: :cascade do |t|
     t.bigint "artist_id"
     t.string "art_type"
@@ -51,6 +67,7 @@ ActiveRecord::Schema[7.1].define(version: 22) do
   create_table "artist_cities", force: :cascade do |t|
     t.bigint "artist_id"
     t.bigint "city_id"
+    t.integer "period"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["artist_id"], name: "index_artist_cities_on_artist_id"
@@ -75,9 +92,42 @@ ActiveRecord::Schema[7.1].define(version: 22) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "collection_artists", force: :cascade do |t|
+    t.integer "collection_id"
+    t.integer "artist_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "collection_events", force: :cascade do |t|
+    t.integer "collection_id"
+    t.integer "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "collections", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.text "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "countries", force: :cascade do |t|
     t.string "name"
     t.string "country_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.integer "exhibition_id"
+    t.string "name"
+    t.text "description"
+    t.text "note"
+    t.datetime "scheduled_at"
+    t.datetime "completed_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -104,7 +154,7 @@ ActiveRecord::Schema[7.1].define(version: 22) do
     t.string "title"
     t.text "description"
     t.string "url"
-    t.string "image_url"
+    t.boolean "visited", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -148,16 +198,24 @@ ActiveRecord::Schema[7.1].define(version: 22) do
     t.string "title"
     t.text "description"
     t.string "date_of_creation"
-    t.string "medium_1"
-    t.string "medium_2"
-    t.string "medium_3"
-    t.string "medium_4"
-    t.string "medium_5"
-    t.string "medium_6"
-    t.string "medium_7"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "style"
+  end
+
+  create_table "movement_artists", force: :cascade do |t|
+    t.bigint "movement_id"
+    t.bigint "artist_id"
+    t.index ["artist_id"], name: "index_movement_artists_on_artist_id"
+    t.index ["movement_id"], name: "index_movement_artists_on_movement_id"
+  end
+
+  create_table "movements", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "period"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "opening_times", force: :cascade do |t|
@@ -183,11 +241,17 @@ ActiveRecord::Schema[7.1].define(version: 22) do
     t.string "style"
     t.string "technique"
     t.string "support"
-    t.string "medium_1"
-    t.string "medium_2"
-    t.string "medium_3"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "residencies", force: :cascade do |t|
+    t.integer "city_id"
+    t.integer "organisation_id"
+    t.string "name"
+    t.string "website"
+    t.datetime "application_open_at"
+    t.datetime "application_deadline_at"
   end
 
   create_table "studios", force: :cascade do |t|

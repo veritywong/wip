@@ -4,7 +4,7 @@ class CreateExhibitions < ActiveRecord::Migration[7.1]
       t.string :title
       t.text :description
       t.string :url
-      t.string :image_url
+      t.boolean :visited, default: false
 
       t.timestamps
     end

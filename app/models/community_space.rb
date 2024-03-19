@@ -1,3 +1,0 @@
-class CommunitySpace < Gallery
-   
-end

@@ -12,9 +12,18 @@ module Taggable
         def tag_names
             tags.pluck(:name)
         end
+
+        def artist_tag_names # finds all artist tags including those for art works
+            if self.is_a?(Artist)
+                tags = []
+                self.art_works.each {|art_work| tags << art_work.tag_names if art_work.tags.any?}
+                tags << self.tag_names if self.tag_names.any?
+                tags.flatten
+            end
+        end
     
         def add_tag(name)
-            tags << Tag.find_or_create_by(name: name) # make this fuzzy?
+            tags << Tag.find_or_create_by(name: name) # make this fuzzy?''
         end
     end
 

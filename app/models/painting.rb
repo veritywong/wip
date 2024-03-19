@@ -1,3 +1,3 @@
 class Painting < ArtBase
-    
+
 end
