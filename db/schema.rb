@@ -74,6 +74,13 @@ ActiveRecord::Schema[7.1].define(version: 30) do
     t.index ["city_id"], name: "index_artist_cities_on_city_id"
   end
 
+  create_table "artist_movements", force: :cascade do |t|
+    t.bigint "movement_id"
+    t.bigint "artist_id"
+    t.index ["artist_id"], name: "index_artist_movements_on_artist_id"
+    t.index ["movement_id"], name: "index_artist_movements_on_movement_id"
+  end
+
   create_table "artists", force: :cascade do |t|
     t.integer "studio_id"
     t.string "name"
@@ -201,13 +208,6 @@ ActiveRecord::Schema[7.1].define(version: 30) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "style"
-  end
-
-  create_table "movement_artists", force: :cascade do |t|
-    t.bigint "movement_id"
-    t.bigint "artist_id"
-    t.index ["artist_id"], name: "index_movement_artists_on_artist_id"
-    t.index ["movement_id"], name: "index_movement_artists_on_movement_id"
   end
 
   create_table "movements", force: :cascade do |t|
