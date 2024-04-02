@@ -56,7 +56,5 @@ OpeningHours
 #exhibition has exhibition_artists, artists are polymorphic 'painter x', 'scultor y', create an artist-type e.g. Musician, Author, Writer
 
 Image upload - should I use cloudinary?
-<%= render partial: 'shared/image_upload_form', locals: { model: @exhibition } %>
-  <%#= render partial: "shared/document_uploader", locals: { uploader_name: "candidate_cv", uploader_title: "Candidate Resume" } %>
 
 https://medium.com/nerd-for-tech/getting-started-with-cloudinary-in-ruby-on-rails-6-925888032395
