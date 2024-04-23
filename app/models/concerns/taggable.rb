@@ -23,7 +23,13 @@ module Taggable
         end
     
         def add_tag(name)
-            tags << Tag.find_or_create_by(name: name) # make this fuzzy?''
+            tags << Tag.find_or_create_by(name: name) # make this fuzzy?'' --> done below
+            # existing_tag = Tag.fuzzy_search(:name, name)
+            # if existing_tag
+            #     tags << existing_tag
+            # else
+            #     tags << Tag.create(name: name)
+            # end
         end
     end
 

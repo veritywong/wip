@@ -39,12 +39,12 @@ approach = Gallery.create(city: london, type: 'CommercialGallery', name: 'The Ap
 whitechapel = Gallery.create(city: london, type: 'PublicGallery', name: 'Whitechapel Gallery') 
 
 # create artists
-bill_lynch = Artist.create(name: 'Bill Lynch', description: 'Influenced by chinese brush painting, painted on found wood.')
-ellen_siebers = Artist.create(name: 'Ellen Siebers', description: 'exhibited with bill lynch.')
-mary_weatherford = Artist.create(name: 'Mary Weatherford', description: 'has a show on at the gagosian.')
-el_anatsui = Artist.create(name: 'El Anatsui', description: 'More of a weaver as well')
-yayoi_kusama = Artist.create(name: 'Yayoi Kusama', description: 'Creates installations with sculptures')
-zadie_xa = Artist.create(name: 'Zadie Xa', description: 'Her practice focuses on familial legacies, interspecies communication and diasporic worlding.')
+bill_lynch = Artist.create(name: 'Bill Lynch', about: 'Influenced by chinese brush painting, painted on found wood.')
+ellen_siebers = Artist.create(name: 'Ellen Siebers', about: 'exhibited with bill lynch.')
+mary_weatherford = Artist.create(name: 'Mary Weatherford', about: 'has a show on at the gagosian.')
+el_anatsui = Artist.create(name: 'El Anatsui', about: 'More of a weaver as well')
+yayoi_kusama = Artist.create(name: 'Yayoi Kusama', about: 'Creates installations with sculptures')
+zadie_xa = Artist.create(name: 'Zadie Xa', about: 'Her practice focuses on familial legacies, interspecies communication and diasporic worlding.')
 
 # create installations
 chandalier_of_grief = Installation.create(title: 'Chandelier of Grief', date_of_creation: '2016')
@@ -86,8 +86,6 @@ flashe = ArtMedium.create(name: 'flashe')
 bottle_tops = ArtMedium.create(name: 'bottle tops')
 copper_wire = ArtMedium.create(name: 'copper wire')
 
-Event.create(exhibition: five_ways, name: 'whitechapel gallery visit', completed_at: 'April 09, 2023')
-
 ArtMediumEntry.create(art_medium: oil_paint, art_mediumable: branch_leaves)
 ArtMediumEntry.create(art_medium: flashe, art_mediumable: celadon_anemone)
 ArtMediumEntry.create(art_medium: chandelier, art_mediumable: chandalier_of_grief)
@@ -117,13 +115,13 @@ ExhibitionArtWork.create(exhibition: behind_the_red_moon, art_work: art_work3)
 ExhibitionArtWork.create(exhibition: sea_and_space, art_work: art_work5)
 
 # create artist_cities
-ArtistCity.create(artist: bill_lynch, city: new_york, period: 2)
-ArtistCity.create(artist: ellen_siebers, city: hudson, period: 3)
-ArtistCity.create(artist: mary_weatherford, city: los_angelese, period: 3)
-ArtistCity.create(artist: el_anatsui, city: anyako, period: 0)
-ArtistCity.create(artist: el_anatsui, city: nsukka, period: 3)
-ArtistCity.create(artist: yayoi_kusama, city: tokyo, period: 0)
-ArtistCity.create(artist: zadie_xa, city: london, period: 3)
+ArtistCity.create(artist: bill_lynch, city: new_york)
+ArtistCity.create(artist: ellen_siebers, city: hudson)
+ArtistCity.create(artist: mary_weatherford, city: los_angelese)
+ArtistCity.create(artist: el_anatsui, city: anyako)
+ArtistCity.create(artist: el_anatsui, city: nsukka)
+ArtistCity.create(artist: yayoi_kusama, city: tokyo)
+ArtistCity.create(artist: zadie_xa, city: london)
 
 # create exhibition_artists
 ExhibitionArtist.create(exhibition: out_of_earth, artist: bill_lynch)
@@ -138,7 +136,20 @@ GalleryExhibition.create(gallery: tate, exhibition: behind_the_red_moon)
 GalleryExhibition.create(gallery: tate, exhibition: infinity_mirror)
 GalleryExhibition.create(gallery: approach, exhibition: out_of_earth)
 GalleryExhibition.create(gallery: gagosian, exhibition: sea_and_space)
-GalleryExhibition.create(gallery: whitechapel, exhibition: five_ways)
+five_ways_whitechapel = GalleryExhibition.create(gallery: whitechapel, exhibition: five_ways)
+
+# create activities
+Activity.create(gallery_exhibition: five_ways_whitechapel, name: 'whitechapel gallery visit', completed_at: 'April 09, 2023')
+Activity.create(name: 'walk in epping forest', completed_at: 'June 09, 2023' )
+
+# create collections
+one = Collection.create(title: 'Art day out ideas')
+
+# create items
+item_one = Item.create(collection: one, content: 'visit V&A ceramics collection')
+item_two = Item.create(collection: one, content: 'go drawing and walking in epping forest')
+item_three =  Item.create(collection: one, content: 'Chelsea Physic garden take photos')
+item_four = Item.create(collection: one, content: 'Kew garden take photos')
 
 # create gallery_artists
 GalleryArtist.create(gallery: tate, artist: el_anatsui)

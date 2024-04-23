@@ -11,7 +11,7 @@ module Attachable # could rename it to be clearly an image attached, or not make
             self.images.attach(io: image, filename: "#{image_name}.jpg")
         end
 
-        def attach_exhibition_image(image_url, image_name)
+        def attach_exhibition_image(image_url, image_name) # this is specific to exhibition, so should only be in exhibition model?
             image = URI.open(image_url)
             self.promo_image.attach(io: image, filename: "#{image_name}.jpg")
         end

@@ -1,0 +1,7 @@
+<%= @artist.name %>
+<br><br>
+<% if @image %>
+  <%= image_tag url_for(@image), style: "width: 300px; height: 100%;" %>
+<% end %>
+<br><br>
+<%= @artist.description %>

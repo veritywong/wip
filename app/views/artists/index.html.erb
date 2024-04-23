@@ -1,0 +1,20 @@
+<h1>Artists</h1>
+
+<ul>
+  <% @artists.each do |artist| %>
+    <li>
+        <%= artist.name %>
+    </li>
+  <% end %>
+</ul>
+
+<ul>
+
+    <li>
+      <%#= image_tag @image.representation(resize_to_limit: [100, 100]) %>
+      <%#= image_tag @image.variant(resize: '300x200') %>
+      <%#= image_tag url_for(@image) %>
+
+    </li>
+
+</ul>

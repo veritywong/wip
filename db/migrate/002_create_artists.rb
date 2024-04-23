@@ -5,7 +5,7 @@ class CreateArtists < ActiveRecord::Migration[7.1]
             t.string :name
             t.string :website
             t.string :instagram
-            t.text :description
+            t.text :about
 
             t.timestamps
         end

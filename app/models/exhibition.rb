@@ -12,8 +12,6 @@ class Exhibition < ApplicationRecord
   has_many :exhibition_art_works, dependent: :destroy
   has_many :art_works, through: :exhibition_art_works
 
-  has_many :events
-
   has_one_attached :promo_image
   has_many_attached :pdfs
 

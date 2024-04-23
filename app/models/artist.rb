@@ -17,27 +17,20 @@ class Artist < ApplicationRecord
 
     has_many :exhibition_artists, dependent: :destroy
     has_many :exhibitions, through: :exhibition_artists
-
-    has_many :collection_artists
-    has_many :collections, through: :collection_artists
-    
-    has_many :movement_artists
-    has_many :movements, through: :movement_artists
     
     has_many_attached :images
 
     validates_presence_of :name
 
-    def self.art_by(name)
-        artist = fuzzy_search(:name, name)
-        {paintings: artist.paintings, installations: artist.installations}  if artist
+    def arts
+        art_works = self.art_works
+        art_works.map {|art_work| art_work.art}
     end
 
-    def all_associations
+    def all_associations # is this even necessary? If searching the artist, would there be categories or filters to get this info?
         { exhibitions: Exhibition.artist(self), 
           galleries: Gallery.artist(self), 
-          paintings: paintings, 
-          installations: installations, 
+          arts: arts, 
           studio: studio,
           tags: tag_names
         }     

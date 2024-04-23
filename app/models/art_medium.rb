@@ -4,15 +4,8 @@ class ArtMedium < ApplicationRecord
   has_many :paintings, through: :art_medium_entries, source: :art_mediumable, source_type: 'Painting'
   has_many :installations, through: :art_medium_entries, source: :art_mediumable, source_type: 'Installation'
 
-  def self.all_with_media
-    all_with_media = []
-    ArtMediumEntry.pluck(:art_mediumable_type).uniq.each {|type| all_with_media << type.constantize.has_art_media}
-    all_with_media
-  end
-
-  def find_all_types_with_medium
-    all_with_media = []
-    ArtMediumEntry.pluck(:art_mediumable_type).uniq.each {|type| all_with_media << type.constantize.find_all_with_medium(self)}
-    all_with_media
+  def art_mediumables
+    art_medium_entries = self.art_medium_entries # try to get all the art_mediumables through scopes or joins through the database
+    art_medium_entries.map {|art_medium| art_medium.art_mediumable} 
   end
 end

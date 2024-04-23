@@ -23,8 +23,8 @@ module ArtMediumable
             joins(:art_media).where('art_medium_entries.art_mediumable_type' => self.to_s).uniq
         end
 
-        def find_all_with_medium(medium)
-            joins(:art_media).where(art_media: medium)
+        def find_with_medium(art_medium)
+            joins(:art_media).where(art_media: art_medium)
         end
     end
 end

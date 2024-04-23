@@ -1,0 +1,8 @@
+<%= @artist.name %>
+
+<%= form_with(model: @artist) do |f| %>
+  <%= f.label :image, 'Upload artist image' %>
+  <%= f.file_field :image %>
+
+  <%= f.submit 'Update' %>
+<% end %>

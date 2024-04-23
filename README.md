@@ -1,4 +1,7 @@
-# README
+# WIP
+
+Art inspiration app - visual diary and planner to store everything related to your art practice.
+A place to remind yourself what inspires you, what you want to do and what you've done.
 
 This README would normally document whatever steps are necessary to get the
 application up and running.

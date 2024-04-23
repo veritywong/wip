@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 30) do
+ActiveRecord::Schema[7.1].define(version: 28) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
   enable_extension "pg_trgm"
@@ -36,6 +36,16 @@ ActiveRecord::Schema[7.1].define(version: 30) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "activities", force: :cascade do |t|
+    t.integer "gallery_exhibition_id"
+    t.string "name"
+    t.text "note"
+    t.datetime "scheduled_at"
+    t.datetime "completed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "art_media", force: :cascade do |t|
@@ -67,18 +77,10 @@ ActiveRecord::Schema[7.1].define(version: 30) do
   create_table "artist_cities", force: :cascade do |t|
     t.bigint "artist_id"
     t.bigint "city_id"
-    t.integer "period"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["artist_id"], name: "index_artist_cities_on_artist_id"
     t.index ["city_id"], name: "index_artist_cities_on_city_id"
-  end
-
-  create_table "artist_movements", force: :cascade do |t|
-    t.bigint "movement_id"
-    t.bigint "artist_id"
-    t.index ["artist_id"], name: "index_artist_movements_on_artist_id"
-    t.index ["movement_id"], name: "index_artist_movements_on_movement_id"
   end
 
   create_table "artists", force: :cascade do |t|
@@ -86,7 +88,7 @@ ActiveRecord::Schema[7.1].define(version: 30) do
     t.string "name"
     t.string "website"
     t.string "instagram"
-    t.text "description"
+    t.text "about"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "collective", default: false
@@ -99,22 +101,18 @@ ActiveRecord::Schema[7.1].define(version: 30) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "collection_artists", force: :cascade do |t|
-    t.integer "collection_id"
-    t.integer "artist_id"
+  create_table "collection_entries", force: :cascade do |t|
+    t.bigint "collection_id"
+    t.string "collectionable_type"
+    t.bigint "collectionable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "collection_events", force: :cascade do |t|
-    t.integer "collection_id"
-    t.integer "event_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["collection_id"], name: "index_collection_entries_on_collection_id"
+    t.index ["collectionable_type", "collectionable_id"], name: "index_collection_entries_on_collectionable"
   end
 
   create_table "collections", force: :cascade do |t|
-    t.string "name"
+    t.string "title"
     t.text "description"
     t.text "note"
     t.datetime "created_at", null: false
@@ -124,17 +122,6 @@ ActiveRecord::Schema[7.1].define(version: 30) do
   create_table "countries", force: :cascade do |t|
     t.string "name"
     t.string "country_code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "events", force: :cascade do |t|
-    t.integer "exhibition_id"
-    t.string "name"
-    t.text "description"
-    t.text "note"
-    t.datetime "scheduled_at"
-    t.datetime "completed_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -159,7 +146,7 @@ ActiveRecord::Schema[7.1].define(version: 30) do
 
   create_table "exhibitions", force: :cascade do |t|
     t.string "title"
-    t.text "description"
+    t.text "overview"
     t.string "url"
     t.boolean "visited", default: false
     t.datetime "created_at", null: false
@@ -210,10 +197,9 @@ ActiveRecord::Schema[7.1].define(version: 30) do
     t.string "style"
   end
 
-  create_table "movements", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.string "period"
+  create_table "items", force: :cascade do |t|
+    t.integer "collection_id"
+    t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
