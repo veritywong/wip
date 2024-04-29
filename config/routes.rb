@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   # root "posts#index"
   resources :exhibitions
   resources :artists
+  resources :collections
   root "exhibitions#index"
   
 end

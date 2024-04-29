@@ -213,6 +213,19 @@ ActiveRecord::Schema[7.1].define(version: 28) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "opportunities", force: :cascade do |t|
+    t.integer "city_id"
+    t.integer "organisation_id"
+    t.string "name"
+    t.text "description"
+    t.string "type", null: false
+    t.string "website"
+    t.datetime "application_opens_at"
+    t.datetime "application_closes_at"
+    t.boolean "free"
+    t.boolean "funded"
+  end
+
   create_table "organisations", force: :cascade do |t|
     t.integer "city_id"
     t.string "name"
@@ -229,15 +242,6 @@ ActiveRecord::Schema[7.1].define(version: 28) do
     t.string "support"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "residencies", force: :cascade do |t|
-    t.integer "city_id"
-    t.integer "organisation_id"
-    t.string "name"
-    t.string "website"
-    t.datetime "application_open_at"
-    t.datetime "application_deadline_at"
   end
 
   create_table "studios", force: :cascade do |t|

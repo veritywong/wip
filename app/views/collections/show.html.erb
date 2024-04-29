@@ -1,0 +1,7 @@
+<h1><%= @collection.title%></h1>
+<% @collection.items.each do |item|%>
+  <ul>
+    <li><%= item.content %></li>
+  </ul>
+<% end %>
+<%= link_to "Edit", edit_collection_path(@collection) %>

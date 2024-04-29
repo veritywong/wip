@@ -61,3 +61,15 @@ OpeningHours
 Image upload - should I use cloudinary?
 
 https://medium.com/nerd-for-tech/getting-started-with-cloudinary-in-ruby-on-rails-6-925888032395
+
+next things to do:
+- finish data structure - residencies (change to opportunities (single table inheritance) - could be a residency, funding application, open calls)
+
+When - visit an exhibition 
+ - art_works: images, wall labels 
+
+
+Ways to render the attached images - only last one works.
+<%#= image_tag @image.representation(resize_to_limit: [100, 100]) %>
+<%#= image_tag @image.variant(resize: '300x200') %>
+<%#= image_tag url_for(@image) %>

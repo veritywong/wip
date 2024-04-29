@@ -1,0 +1,3 @@
+class Residency < Opportunity
+
+end

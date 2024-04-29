@@ -1,0 +1,20 @@
+<h1>Edit <%= @collection.title %></h1>
+
+<%= form_with model: @collection, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |f| %>
+  <template data-nested-form-target="template">
+    <%= f.fields_for :items, Item.new, child_index: 'NEW_RECORD' do |item_fields| %>
+      <%= render "item_form", f: item_fields %>
+    <% end %>
+  </template>
+
+  <%= f.fields_for :items do |item_fields| %>
+    <%= render "item_form", f: item_fields %>
+  <% end %>
+
+  <!-- Inserted elements will be injected before that target. -->
+  <div data-nested-form-target="target"></div>
+
+  <button type="button" data-action="nested-form#add">Add item</button>
+
+  <%= f.submit 'Save items' %>
+<% end %>

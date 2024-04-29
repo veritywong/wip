@@ -1,7 +1,13 @@
-<%= @artist.name %>
-<br><br>
+<h1><%= @artist.name %></h1>
+<p><%= @artist.about %></p>
+<br>
 <% if @image %>
   <%= image_tag url_for(@image), style: "width: 300px; height: 100%;" %>
 <% end %>
-<br><br>
-<%= @artist.description %>
+
+<% @artist.arts.each do |art| %>
+  <ul>
+    <li><%= art.title %></li>
+  <%= image_tag url_for(art.images.first) if art.images.any? %>
+  </ul>
+<% end %>
