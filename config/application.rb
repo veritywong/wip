@@ -27,6 +27,7 @@ module Wip
     # config.eager_load_paths << Rails.root.join("extras")
 
     # added to load models subfolders
-    config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
+    config.autoload_paths += Dir[Rails.root.join('app', 'models', '{*/}')]
+    # config.eager_load_paths += Dir[Rails.root.join('app', 'models', '{*/}')]
   end
 end
