@@ -3,15 +3,15 @@
 <ul>
   <% @exhibitions.each do |exhibition| %>
     <li>
-
-      <%= exhibition.title %> ---- <%= exhibition.url %>
+       <% if exhibition.url.present? %> 
+          <%= link_to exhibition.title, exhibition.url, target: '_blank' %>
+        <% else %>
+          <%= exhibition.title %>
+        <% end %>
     </li>
   <% end %>
 </ul>
 
-<div data-controller="alert">
-  <button data-action="click->alert#show">Alert me!</button>
-</div>
 
 
 
