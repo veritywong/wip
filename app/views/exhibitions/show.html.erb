@@ -1,1 +1,16 @@
-<%= @exhibition.title %>
+<%= turbo_frame_tag @exhibition do %>
+    <h3>
+        <%= @exhibition.title %>
+    </h3>
+    <p>
+        <% @artists.each do |artist| %>
+            <%= artist.name %>
+        <% end %>
+    </p>
+
+            <%= link_to 'visit website', @exhibition.url, target: '_blank' if @exhibition.url.present? %>
+
+    <div>
+        <%= link_to 'edit exhibition', edit_exhibition_path(@exhibition) %>
+    </div>
+<% end %>

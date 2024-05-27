@@ -1,5 +1,9 @@
 class CollectionsController < ApplicationController
     before_action :find_collection, only: %i{show edit}
+    def index
+        @collections = Collection.all
+    end
+
     def show
     end
 

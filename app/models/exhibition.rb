@@ -25,9 +25,4 @@ class Exhibition < ApplicationRecord
   scope :artist, ->(artist) { joins(:artists).where(artists: artist) }
   scope :has_artist, ->(artist_name) { joins(:artists).where(artists: Artist.fuzzy_search(:name, artist_name))} 
 
-  # def artists_attributes=(artists_attributes)
-  #   artists_attributes.each do |i, artist_attributes|
-  #     self.artists.build(artist_attributes)
-  #   end
-  # end
 end

@@ -1,19 +1,19 @@
 <h1> Exhibitions </h1>
+<%= turbo_frame_tag "schedule-exhibition" do %>
+  <%= link_to "schedule exhibition", new_exhibition_path %>
+<% end %>
+<div>
+  <%= link_to "add exhibition  you've aleady visited", visited_and_new_exhibitions_path %>
+</div>
 
-<ul>
-  <% @exhibitions.each do |exhibition| %>
-    <li>
-       <% if exhibition.url.present? %> 
-          <%= link_to exhibition.title, exhibition.url, target: '_blank' %>
-        <% else %>
-          <%= exhibition.title %>
-        <% end %>
-    </li>
-  <% end %>
-</ul>
-
-
-
-
+<div>
+  <ul>
+    <% @exhibitions.each do |exhibition| %>
+      <li>
+        <%= link_to exhibition.title, exhibition_path(exhibition) %>
+      </li>
+    <% end %>
+  </ul>
+</div>
 
 

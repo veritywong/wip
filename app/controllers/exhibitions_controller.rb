@@ -5,6 +5,11 @@ class ExhibitionsController < ApplicationController
 
     def show
         @exhibition = Exhibition.find(params[:id])
+        @artists = @exhibition.artists
+    end
+
+    def edit
+        @exhibition = Exhibition.find(params[:id])
     end
 
     def new
@@ -14,11 +19,24 @@ class ExhibitionsController < ApplicationController
         @exhibition.artists.build
     end
 
+    def visited_and_new
+        @exhibition = Exhibition.new
+        @exhibition.gallery_exhibitions.build
+        @exhibition.exhibition_artists.build
+        @exhibition.artists.build
+
+    end
+
     def create
-        # search for artist, and if that artist exists create a new 'exhibition_artist' otherwise create artist and then the association
-        puts "1 -- #{exhibition_params}"
-        @exhibition = Exhibition.new(exhibition_params)
+        artist = Artist.fuzzy_search(:name, exhibition_params[:artists_attributes]['0'][:name])
+        if artist.nil?
+            @exhibition = Exhibition.new(exhibition_params) 
+        else 
+            @exhibition = Exhibition.new(exhibition_params.except(:artists_attributes))
+        end
+
         if @exhibition.save
+            ExhibitionArtist.create(exhibition: @exhibition, artist: artist) unless artist.nil?
             redirect_to exhibitions_path
         else
             render :new, status: :unprocessable_entity
@@ -34,7 +52,6 @@ class ExhibitionsController < ApplicationController
         params.require(:exhibition).permit(
             :title, :url, 
             gallery_exhibitions_attributes: [:id, :gallery_id, :start_date, :end_date],
-            exhibition_artists_attributes: [:id, :artist_id],
             artists_attributes: [:name]
             )
     end

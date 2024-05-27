@@ -1,44 +1,41 @@
-<h1>Add Exhibition</h1>
-<h2>An exhibition that you'd like to go to, this will go into a calendar with start and end dates.</h2>
+<%= turbo_frame_tag "schedule-exhibition" do %>
+    <%= link_to "close", exhibitions_path %>
+    <h2>Add Exhibition</h2>
+    <p>An exhibition that you'd like to go to, this will go into a calendar.</p>
 
-<% if @exhibition.errors.any? %>
-    <div id='error_explanation'>
-        <h2><%= pluralize(@exhibition.errors.count, "error")%> prohibited this exhibition from being saved:</h2>
-        <ul>
-            <% @exhibition.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-        </ul>
-    </div>
-<% end %>
-
-
-<%= form_with(model: @exhibition, url: exhibitions_path) do |f| %>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-    <%= f.label :url %>
-    <%= f.text_field :url %>
-    <br>
-    <%= f.fields_for :gallery_exhibitions do |gallery_exhibitions_fields| %>
-        <%= gallery_exhibitions_fields.label :gallery_id, 'Gallery' %>
-        <%= gallery_exhibitions_fields.select :gallery_id, Gallery.all.map { |g| [g.name, g.id] }, include_blank: true %>
-
-        <%= gallery_exhibitions_fields.label :start_date %>
-        <%= gallery_exhibitions_fields.date_field :start_date %>
-        <%= gallery_exhibitions_fields.label :end_date %>
-        <%= gallery_exhibitions_fields.date_field :end_date %>
-    <% end %>
-    <br>
-    <%= f.fields_for :exhibition_artists do |exhibition_artists_fields| %>
-        <%= exhibition_artists_fields.label :artist_id %>
-        <%= exhibition_artists_fields.select :artist_id, Artist.all.map {|a| [a.name, a.id]}, include_blank: true %>
-    <% end %>
-    <br>
-
-    <%= f.fields_for :artists do |artist_fields| %>
-        <%= artist_fields.label :name, 'Add artist' %>
-        <%= artist_fields.text_field :name %>
+    <% if @exhibition.errors.any? %>
+        <div id='error_explanation'>
+            <h2><%= pluralize(@exhibition.errors.count, "error")%> prohibited this exhibition from being saved:</h2>
+            <ul>
+                <% @exhibition.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
     <% end %>
 
-    <%= f.submit 'Submit' %>
+    <%= form_with(model: @exhibition) do |f| %>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+        <%= f.label :url %>
+        <%= f.text_field :url %>
+        <br><br>
+        <%= f.fields_for :gallery_exhibitions do |gallery_exhibitions_fields| %>
+            <%= gallery_exhibitions_fields.label :start_date %>
+            <%= gallery_exhibitions_fields.date_field :start_date %>
+            <%= gallery_exhibitions_fields.label :end_date %>
+            <%= gallery_exhibitions_fields.date_field :end_date %>
+            <br><br>
+            <%= gallery_exhibitions_fields.label :gallery_id, 'Gallery' %>
+            <%= gallery_exhibitions_fields.select :gallery_id, Gallery.all.map { |g| [g.name, g.id] }, include_blank: true %>
+        <% end %>
+        <br><br>
+
+        <%= f.fields_for :artists do |artist_fields| %>
+            <%= artist_fields.label :name, 'Add artist' %>
+            <%= artist_fields.text_field :name %>
+        <% end %>
+
+        <%= f.submit 'Submit' %>
+    <% end %>
 <% end %>
