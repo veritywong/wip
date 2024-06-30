@@ -8,9 +8,14 @@
             <%= f.text_field :url %>
         </div>
 
-        <%= render partial: 'shared/gallery_form', locals: { form: f } %>
+        <%= f.fields_for :gallery_exhibitions do |gallery_exhibitions_fields| %>
+            <div class="field">
+                <%= gallery_exhibitions_fields.label :gallery_id, 'Gallery' %>
+                <%= gallery_exhibitions_fields.select :gallery_id, Gallery.all.map { |g| [g.name, g.id] }, include_blank: true %>
+            </div>
+        <% end %>
 
         <div> 
-            <%= f.submit 'Next' %>
+            <%= f.submit 'Save' %>
         </div>
     <% end %>
