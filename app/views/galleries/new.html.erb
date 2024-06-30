@@ -1,0 +1,36 @@
+<%= form_with model: @gallery do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <%= form.label :website %>
+  <%= form.text_field :website %>
+
+  <div>
+    <%= form.label :address_line_1, 'Address' %>
+    <%= form.text_field :address_line_1 %>
+  </div>
+
+  <div>
+    <%= form.label :city_id, 'Town' %>
+    <%= form.select :city_id, @cities.map {|city| [city.name, city.id]} %>
+  </div>
+
+  <div>
+    <%= form.label :postcode, 'Postcode' %>
+    <%= form.text_field :postcode %>
+  </div>
+
+  <div>
+    <%= form.label :type, 'Gallery type' %>
+    <%= form.select :type, [['commercial gallery', 'CommercialGallery'],
+                                        ['community gallery', 'CommunityGallery'],
+                                        ['museum', 'Museum'],
+                                        ['public gallery', 'PublicGallery'], 
+                                        ['sculpture park', 'SculpturePark']] %>
+  </div>
+
+  <%= form.submit %>
+ 
+<% end %>

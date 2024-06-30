@@ -12,9 +12,6 @@ Rails.application.routes.draw do
       get :visited_and_new
       post :visited_and_new
     end
-    member do
-      get :schedule
-    end
   end
 
   resources :gallery_exhibitions do
@@ -27,6 +24,7 @@ Rails.application.routes.draw do
   resources :artists
   resources :collections
   resources :activities
+  resources :galleries
   root "exhibitions#index"
   
 end
