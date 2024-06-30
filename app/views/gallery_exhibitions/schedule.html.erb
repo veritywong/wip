@@ -1,0 +1,24 @@
+<h2>
+    <%="Add #{@gallery_exhibition.exhibition.title} at #{@gallery_exhibition.gallery.name} to calendar" %>
+</h2>
+
+<div data-controller="toggle_display">
+    <%= label_tag :already_visited, 'Have you already visited this exhibition?' %>
+    <div>
+        <%= radio_button_tag :already_visited, 'yes', data: { toggle_display_target: 'radioYes', action: 'change->toggle_display#change' }  %>
+        <%= label_tag :already_visited_yes, 'Yes' %>
+    </div>
+    <div>
+        <%= radio_button_tag :already_visited, 'no', data: { toggle_display_target: 'radioNo', action: 'change->toggle_display#change' }  %>
+        <%= label_tag :already_visited_no, 'No' %>
+    </div>
+
+    <div style="display: none" >
+    <%= render partial: 'visited_form', locals: { gallery_exhibition: @gallery_exhibition } %>
+    </div>
+
+    <div style="display: none" >
+    <%= render partial: 'to_visit_form', locals: { gallery_exhibition: @gallery_exhibition } %>
+    </div>
+</div>
+

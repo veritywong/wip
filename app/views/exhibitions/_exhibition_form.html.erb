@@ -1,0 +1,30 @@
+    <%= form_with(model: @exhibition) do |f| %>
+        <div>
+            <%= f.label :title %>
+            <%= f.text_field :title %>
+        </div>
+        <div>
+            <%= f.label :url %>
+            <%= f.text_field :url %>
+        </div>
+
+        <%= f.fields_for :galleries do |gallery_fields| %>
+        <div class="field">
+            <%= gallery_fields.label :name, 'Gallery' %>
+            <%= gallery_fields.text_field :name %>
+            <%= gallery_fields.label :city, 'City' %>
+            <%= gallery_fields.select :city_id, City.all.map {|city| [city.name, city.id]} %>
+            <%= gallery_fields.label :type, 'Gallery type' %>
+            <%= gallery_fields.select :type, [['commercial gallery', 'CommercialGallery'],
+                                              ['community gallery', 'CommunityGallery'],
+                                              ['museum', 'Museum'],
+                                              ['public gallery', 'PublicGallery'], 
+                                              ['sculpture park', 'SculpturePark']] %>
+
+        </div>
+       <% end %>
+
+        <div>
+            <%= f.submit 'Next' %>
+        </div>
+    <% end %>

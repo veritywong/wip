@@ -12,11 +12,21 @@ Rails.application.routes.draw do
       get :visited_and_new
       post :visited_and_new
     end
-   
+    member do
+      get :schedule
+    end
+  end
+
+  resources :gallery_exhibitions do
+    member do 
+      get :schedule
+      post :schedule
+    end
   end
 
   resources :artists
   resources :collections
+  resources :activities
   root "exhibitions#index"
   
 end

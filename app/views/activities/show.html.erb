@@ -1,0 +1,8 @@
+<div>
+    <%= @activity.name %>
+    <div>
+        <% (0...@activity.images.count).each do |image| %>
+            <%= image_tag url_for(@activity.images[image]), style: "height: 400px; display: inline-block" %>
+        <% end %>
+    </div>
+</div>

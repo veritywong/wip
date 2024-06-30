@@ -18,7 +18,7 @@ class Artist < ApplicationRecord
     has_many :exhibition_artists, dependent: :destroy
     has_many :exhibitions, through: :exhibition_artists#, inverse_of: :artists
 
-    has_many :collection_entries, dependent: :destroy
+    # has_many :collection_entries, dependent: :destroy
     
     has_many_attached :images
 

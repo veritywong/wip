@@ -8,7 +8,7 @@
         <% end %>
     </p>
 
-            <%= link_to 'visit website', @exhibition.url, target: '_blank' if @exhibition.url.present? %>
+        <%= link_to 'visit website', @exhibition.url, target: '_blank' if @exhibition.url.present? %>
 
     <div>
         <%= link_to 'edit exhibition', edit_exhibition_path(@exhibition) %>

@@ -1,4 +1,4 @@
-<h2>Add Exhibition That you've already visited</h2>
+<h2>Add exhibition that you've already visited</h2>
 <p>An exhibition that you have already been to, this includes uploading photos </p>
 
 <% if @exhibition.errors.any? %>
@@ -13,29 +13,42 @@
 <% end %>
 
 <%= form_with(model: @exhibition) do |f| %>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-    <%= f.label :url %>
-    <%= f.text_field :url %>
-    <br><br>
+    <div class="field">
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+    </div>
+    <div class="field">
+        <%= f.label :url %>
+        <%= f.text_field :url %>
+    </div>
+    
     <%= f.fields_for :gallery_exhibitions do |gallery_exhibitions_fields| %>
-        <%= gallery_exhibitions_fields.label :gallery_id, 'Gallery' %>
-        <%= gallery_exhibitions_fields.select :gallery_id, Gallery.all.map { |g| [g.name, g.id] }, include_blank: true %>
+        <div class="field">
+            <%= gallery_exhibitions_fields.label :gallery_id, 'Gallery' %>
+            <%= gallery_exhibitions_fields.select :gallery_id, Gallery.all.map { |g| [g.name, g.id] }, include_blank: true %>
+        </div>
     <% end %>
-    <br><br>
+
 
     <%= f.fields_for :artists do |artist_fields| %>
-        <%= artist_fields.label :name, 'Add artist' %>
-        <%= artist_fields.text_field :name %>
+        <div class="field">
+            <%= artist_fields.label :name, 'Add artist' %>
+            <%= artist_fields.text_field :name %>
+        </div>
     <% end %>
 
     <%= fields_for :activity do |activity_fields| %>
-        <%= activity_fields.label :completed_at, 'Date of Visit' %>
-        <%= activity_fields.date_field :completed_at %>
+        <div>
+            <%= activity_fields.label :completed_at, 'Date of Visit' %>
+            <%= activity_fields.date_field :completed_at %>
+        </div>
 
-        <%= activity_fields.label :images, 'Upload Images' %>
-
+        <div>
+            <%= activity_fields.label :images, 'Upload Images' %>
+            <%= activity_fields.file_field :image, multiple: true %>
+        </div>
     <% end %>
-    <br><br>
-    <%= f.submit 'Submit' %>
+    <div>
+        <%= f.submit %>
+    </div>
 <% end %>

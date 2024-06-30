@@ -1,9 +1,14 @@
-<%= form_with model: @model do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+<div data-controller="image-previews">
+    <%= form_with(model: @activity) do |f| %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
 
-  <%= f.label :images, "Upload Images" %>
-  <%= f.file_field :images, multiple: true %>
+        <%= f.label :images %>
+        <%= f.file_field :images, multiple: true, accept: 'image/*', data: { image_previews_target: "fileInput" }%>
 
-  <%= f.submit %>
-<% end %>
+        <div data-image-previews-target="previewContainer"></div>
+
+        <%= f.submit %>
+    <% end %>
+
+</div>
