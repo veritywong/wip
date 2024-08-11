@@ -5,4 +5,6 @@
             <%= image_tag url_for(@activity.images[image]), style: "height: 400px; display: inline-block" %>
         <% end %>
     </div>
+
+    <%= link_to 'Edit', edit_activity_path(@activity) %>
 </div>

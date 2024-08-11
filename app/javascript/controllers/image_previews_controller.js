@@ -28,4 +28,16 @@ export default class extends Controller {
     });
   }
 
+  removeImage(event){
+    const button = event.currentTarget
+    const imageId = button.dataset.imageId
+    const hiddenField = document.getElementById(`hidden_image_${imageId}`)
+
+    if (hiddenField) {
+      hiddenField.remove()
+      button.parentElement.remove()
+    }
+  }
+
+
 }

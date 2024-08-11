@@ -29,5 +29,8 @@ module Wip
     # added to load models subfolders
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{*/}')]
     # config.eager_load_paths += Dir[Rails.root.join('app', 'models', '{*/}')]
+
+    # to allow for image editting
+    config.active_storage.variant_processor = :mini_magick;
   end
 end
