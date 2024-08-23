@@ -1,3 +1,0 @@
-class CommercialGallery < Gallery
-
-end

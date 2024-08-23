@@ -33,10 +33,10 @@ nsukka = City.create(name: 'Nsukka', country: nigeria)
 tokyo = City.create(name: 'Tokyo', country: japan)
 
 # Create galleries
-tate = Gallery.create(city: london, type: 'Museum', name: 'Tate Modern') 
-gagosian = Gallery.create(city: new_york, type: 'Museum', name: 'Gagosian') 
-approach = Gallery.create(city: london, type: 'CommercialGallery', name: 'The Approach') 
-whitechapel = Gallery.create(city: london, type: 'PublicGallery', name: 'Whitechapel Gallery') 
+tate = Gallery.create(city: london, name: 'Tate Modern') 
+gagosian = Gallery.create(city: new_york, name: 'Gagosian') 
+approach = Gallery.create(city: london, name: 'The Approach') 
+whitechapel = Gallery.create(city: london, name: 'Whitechapel Gallery') 
 
 # create artists
 bill_lynch = Artist.create(name: 'Bill Lynch', about: 'Influenced by chinese brush painting, painted on found wood.')

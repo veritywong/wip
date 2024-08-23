@@ -1,3 +1,0 @@
-class SculpturePark < ApplicationRecord
-
-end

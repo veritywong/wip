@@ -163,7 +163,6 @@ ActiveRecord::Schema[7.1].define(version: 28) do
     t.integer "city_id"
     t.integer "organisation_id"
     t.integer "studio_id"
-    t.string "type", null: false
     t.string "name"
     t.string "website"
     t.string "address_line_1"

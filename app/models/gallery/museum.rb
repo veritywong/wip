@@ -1,3 +1,0 @@
-class Museum < Gallery
-
-end

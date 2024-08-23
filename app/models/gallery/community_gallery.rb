@@ -1,3 +1,0 @@
-class CommunityGallery < Gallery
-   
-end
