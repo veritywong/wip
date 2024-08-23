@@ -25,6 +25,6 @@ Rails.application.routes.draw do
   resources :collections
   resources :activities
   resources :galleries
-  root "exhibitions#index"
+  root "gallery_exhibitions#index"
   
 end
