@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root "gallery_exhibitions#index"
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
-
-  # Defines the root path route ("/")
-  # root "posts#index"
   resources :exhibitions do
     collection do
       get :visited_and_new
@@ -25,8 +19,11 @@ Rails.application.routes.draw do
   resources :collections
   resources :activities
   resources :galleries
-  root "gallery_exhibitions#index"
 
-  get 'locations/search', to: 'locations#search'
+  resources :locations, only: [:none] do
+    collection do
+      get :search
+    end
+  end  
   
 end
