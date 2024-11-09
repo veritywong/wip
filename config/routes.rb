@@ -26,5 +26,7 @@ Rails.application.routes.draw do
   resources :activities
   resources :galleries
   root "gallery_exhibitions#index"
+
+  get 'locations/search', to: 'locations#search'
   
 end
