@@ -8,10 +8,10 @@
             <%= f.text_field :url %>
         </div>
 
-        <%= f.fields_for :gallery_exhibitions do |gallery_exhibitions_fields| %>
+        <%= f.fields_for :galleries do |galleries_fields| %>
             <div class="field">
-                <%= gallery_exhibitions_fields.label :gallery_id, 'Gallery' %>
-                <%= gallery_exhibitions_fields.select :gallery_id, Gallery.all.order(name: :asc).map { |gallery| [gallery.name, gallery.id] }, include_blank: true %>
+                <%= galleries_fields.label :gallery_id, 'Gallery' %>
+                <%= galleries_fields.select :gallery_id, Gallery.all.order(name: :asc).map { |gallery| [gallery.name, gallery.id] }, include_blank: true %>
             </div>
         <% end %>
 

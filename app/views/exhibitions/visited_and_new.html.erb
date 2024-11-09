@@ -21,14 +21,6 @@
         <%= f.label :url %>
         <%= f.text_field :url %>
     </div>
-    
-    <%= f.fields_for :gallery_exhibitions do |gallery_exhibitions_fields| %>
-        <div class="field">
-            <%= gallery_exhibitions_fields.label :gallery_id, 'Gallery' %>
-            <%= gallery_exhibitions_fields.select :gallery_id, Gallery.all.map { |g| [g.name, g.id] }, include_blank: true %>
-        </div>
-    <% end %>
-
 
     <%= f.fields_for :artists do |artist_fields| %>
         <div class="field">

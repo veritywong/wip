@@ -14,12 +14,10 @@ class ExhibitionsController < ApplicationController
 
     def new
         @exhibition = Exhibition.new
-        @exhibition.gallery_exhibitions.build
     end
 
     def visited_and_new
         @exhibition = Exhibition.new
-        @exhibition.gallery_exhibitions.build
         # @exhibition.exhibition_artists.build
         # @exhibition.artists.build
     end
@@ -36,7 +34,7 @@ class ExhibitionsController < ApplicationController
 
         if @exhibition.save
             # ExhibitionArtist.create(exhibition: @exhibition, artist: artist) unless artist.nil?
-            redirect_to schedule_gallery_exhibition_path(@exhibition.gallery_exhibitions.last)
+            redirect_to exhibitions_path
         else
             render :new, status: :unprocessable_entity
         end
@@ -53,8 +51,7 @@ class ExhibitionsController < ApplicationController
 
     def exhibition_params
         params.require(:exhibition).permit(
-            :title, :url, 
-            gallery_exhibitions_attributes: [:id, :gallery_id, :start_date, :end_date]
+            :title, :url, :gallery_id, :start_date, :end_date
             # artists_attributes: [:name]
             )
     end

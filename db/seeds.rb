@@ -9,12 +9,6 @@
 #   end
 
 # change seed files so that the variable names are more obvious
-# Create exhibitions
-out_of_earth = Exhibition.create(title: 'Out of Earth')
-infinity_mirror = Exhibition.create(title: 'Infinity Mirror Rooms')
-behind_the_red_moon = Exhibition.create(title: 'Behind the Red Moon')
-sea_and_space = Exhibition.create(title: 'Sea and Space')
-five_ways = Exhibition.create(title: 'Zadie Xa: House Gods, Animal Guides and Five Ways 2 Forgiveness', visited: true)
 
 # Create countries
 england  = Country.create(name: 'England', country_code: 'en')
@@ -37,6 +31,13 @@ tate = Gallery.create(city: london, name: 'Tate Modern')
 gagosian = Gallery.create(city: new_york, name: 'Gagosian') 
 approach = Gallery.create(city: london, name: 'The Approach') 
 whitechapel = Gallery.create(city: london, name: 'Whitechapel Gallery') 
+
+# Create exhibitions
+out_of_earth = Exhibition.create(gallery: approach, title: 'Out of Earth')
+infinity_mirror = Exhibition.create(gallery: tate, title: 'Infinity Mirror Rooms')
+behind_the_red_moon = Exhibition.create(gallery: tate, title: 'Behind the Red Moon')
+sea_and_space = Exhibition.create(gallery: gagosian, title: 'Sea and Space')
+five_ways = Exhibition.create(gallery: whitechapel, title: 'Zadie Xa: House Gods, Animal Guides and Five Ways 2 Forgiveness')
 
 # create artists
 bill_lynch = Artist.create(name: 'Bill Lynch', about: 'Influenced by chinese brush painting, painted on found wood.')
@@ -131,15 +132,8 @@ ExhibitionArtist.create(exhibition: behind_the_red_moon, artist: el_anatsui)
 ExhibitionArtist.create(exhibition: sea_and_space, artist: mary_weatherford)
 ExhibitionArtist.create(exhibition: five_ways, artist: zadie_xa)
 
-# create gallery_exhibition
-GalleryExhibition.create(gallery: tate, exhibition: behind_the_red_moon)
-GalleryExhibition.create(gallery: tate, exhibition: infinity_mirror)
-GalleryExhibition.create(gallery: approach, exhibition: out_of_earth)
-GalleryExhibition.create(gallery: gagosian, exhibition: sea_and_space)
-five_ways_whitechapel = GalleryExhibition.create(gallery: whitechapel, exhibition: five_ways)
-
 # create activities
-Activity.create(gallery_exhibition: five_ways_whitechapel, name: 'whitechapel gallery visit', completed_at: 'April 09, 2023')
+Activity.create(exhibition: five_ways, name: 'whitechapel gallery visit', completed_at: 'April 09, 2023')
 Activity.create(name: 'walk in epping forest', completed_at: 'June 09, 2023' )
 
 # create collections

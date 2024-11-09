@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 28) do
+ActiveRecord::Schema[7.1].define(version: 27) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
   enable_extension "pg_trgm"
@@ -45,7 +45,7 @@ ActiveRecord::Schema[7.1].define(version: 28) do
   end
 
   create_table "activities", force: :cascade do |t|
-    t.integer "gallery_exhibition_id"
+    t.integer "exhibition_id"
     t.string "name"
     t.text "note"
     t.datetime "scheduled_at"
@@ -151,10 +151,12 @@ ActiveRecord::Schema[7.1].define(version: 28) do
   end
 
   create_table "exhibitions", force: :cascade do |t|
+    t.integer "gallery_id"
     t.string "title"
     t.text "overview"
     t.string "url"
-    t.boolean "visited", default: false
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -180,17 +182,6 @@ ActiveRecord::Schema[7.1].define(version: 28) do
     t.datetime "updated_at", null: false
     t.index ["artist_id"], name: "index_gallery_artists_on_artist_id"
     t.index ["gallery_id"], name: "index_gallery_artists_on_gallery_id"
-  end
-
-  create_table "gallery_exhibitions", force: :cascade do |t|
-    t.bigint "gallery_id"
-    t.bigint "exhibition_id"
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["exhibition_id"], name: "index_gallery_exhibitions_on_exhibition_id"
-    t.index ["gallery_id"], name: "index_gallery_exhibitions_on_gallery_id"
   end
 
   create_table "installations", force: :cascade do |t|
