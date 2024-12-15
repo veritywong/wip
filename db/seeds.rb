@@ -32,12 +32,12 @@ gagosian = Gallery.create(city: new_york, name: 'Gagosian')
 approach = Gallery.create(city: london, name: 'The Approach') 
 whitechapel = Gallery.create(city: london, name: 'Whitechapel Gallery') 
 
-# Create exhibitions
-out_of_earth = Exhibition.create(gallery: approach, title: 'Out of Earth')
-infinity_mirror = Exhibition.create(gallery: tate, title: 'Infinity Mirror Rooms')
-behind_the_red_moon = Exhibition.create(gallery: tate, title: 'Behind the Red Moon')
-sea_and_space = Exhibition.create(gallery: gagosian, title: 'Sea and Space')
-five_ways = Exhibition.create(gallery: whitechapel, title: 'Zadie Xa: House Gods, Animal Guides and Five Ways 2 Forgiveness')
+# Create events
+out_of_earth = Event.create(gallery: approach, title: 'Out of Earth')
+infinity_mirror = Event.create(gallery: tate, title: 'Infinity Mirror Rooms')
+behind_the_red_moon = Event.create(gallery: tate, title: 'Behind the Red Moon')
+sea_and_space = Event.create(gallery: gagosian, title: 'Sea and Space')
+five_ways = Event.create(gallery: whitechapel, title: 'Zadie Xa: House Gods, Animal Guides and Five Ways 2 Forgiveness')
 
 # create artists
 bill_lynch = Artist.create(name: 'Bill Lynch', about: 'Influenced by chinese brush painting, painted on found wood.')
@@ -109,11 +109,11 @@ Tagging.create(tag: sculpture_inspo, taggable: art_work1)
 Tagging.create(tag: recycled_material, taggable: art_work3)
 Tagging.create(tag: migration, taggable: art_work3)
 
-ExhibitionArtWork.create(exhibition: infinity_mirror, art_work: art_work1)
-ExhibitionArtWork.create(exhibition: out_of_earth, art_work: art_work4)
-ExhibitionArtWork.create(exhibition: out_of_earth, art_work: art_work5)
-ExhibitionArtWork.create(exhibition: behind_the_red_moon, art_work: art_work3)
-ExhibitionArtWork.create(exhibition: sea_and_space, art_work: art_work5)
+EventArtWork.create(event: infinity_mirror, art_work: art_work1)
+EventArtWork.create(event: out_of_earth, art_work: art_work4)
+EventArtWork.create(event: out_of_earth, art_work: art_work5)
+EventArtWork.create(event: behind_the_red_moon, art_work: art_work3)
+EventArtWork.create(event: sea_and_space, art_work: art_work5)
 
 # create artist_cities
 ArtistCity.create(artist: bill_lynch, city: new_york)
@@ -124,16 +124,16 @@ ArtistCity.create(artist: el_anatsui, city: nsukka)
 ArtistCity.create(artist: yayoi_kusama, city: tokyo)
 ArtistCity.create(artist: zadie_xa, city: london)
 
-# create exhibition_artists
-ExhibitionArtist.create(exhibition: out_of_earth, artist: bill_lynch)
-ExhibitionArtist.create(exhibition: out_of_earth, artist: ellen_siebers)
-ExhibitionArtist.create(exhibition: infinity_mirror, artist: yayoi_kusama)
-ExhibitionArtist.create(exhibition: behind_the_red_moon, artist: el_anatsui)
-ExhibitionArtist.create(exhibition: sea_and_space, artist: mary_weatherford)
-ExhibitionArtist.create(exhibition: five_ways, artist: zadie_xa)
+# create event_artists
+EventArtist.create(event: out_of_earth, artist: bill_lynch)
+EventArtist.create(event: out_of_earth, artist: ellen_siebers)
+EventArtist.create(event: infinity_mirror, artist: yayoi_kusama)
+EventArtist.create(event: behind_the_red_moon, artist: el_anatsui)
+EventArtist.create(event: sea_and_space, artist: mary_weatherford)
+EventArtist.create(event: five_ways, artist: zadie_xa)
 
 # create activities
-Activity.create(exhibition: five_ways, name: 'whitechapel gallery visit', completed_at: 'April 09, 2023')
+Activity.create(event: five_ways, name: 'whitechapel gallery visit', completed_at: 'April 09, 2023')
 Activity.create(name: 'walk in epping forest', completed_at: 'June 09, 2023' )
 
 # create collections

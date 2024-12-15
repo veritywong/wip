@@ -1,7 +1,7 @@
-class CreateExhibitionArtists < ActiveRecord::Migration[7.1]
+class CreateEventArtists < ActiveRecord::Migration[7.1]
     def change
-      create_table :exhibition_artists do |t|
-        t.references :exhibition
+      create_table :event_artists do |t|
+        t.references :event
         t.references :artist
   
         t.timestamps
