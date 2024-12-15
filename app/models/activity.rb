@@ -1,6 +1,6 @@
 class Activity < ApplicationRecord
 include Attachable
-    belongs_to :exhibition, optional: true
+    belongs_to :event, optional: true
     has_many :collection_entries, as: :collectionable
     # has_many_attached :images, dependent: :purge_later
     has_many_attached :images do |attachable|

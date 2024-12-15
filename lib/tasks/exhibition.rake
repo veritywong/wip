@@ -1,6 +1,6 @@
-namespace :exhibitions do
-  desc 'Scrape exhibitions from exhibitions website'
+namespace :events do
+  desc 'Scrape events from events website'
   task scrape: :environment do
-    ExhibitionScraper.scrape
+    EventScraper.scrape
   end
 end
