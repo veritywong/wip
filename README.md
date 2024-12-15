@@ -9,6 +9,21 @@ Art app for recording arty things
 
 ![Alt text](app/assets/images/wip_data_structure_v1.png "WIP og data structure")
 
+## Process
+This app has been a learning activity for me to first of all get a better understanding of rails and programming in general. I started by focussing on the data structure, in order to better understand concepts such as polymorphism. It also has been a way for me to practice using the console to become more fluent and speedy with programming.
+
+## Changes
+### Exhibitions
+I originally had the idea that an exhibition could be a touring exhibition, so it could have many galleries, however I changed my mind so that now an exhibition belongs to a gallery. If I have a touring exhibition I still need to decide how I would like this piece of informatino to be stored.
+I have also re-named exhibitions to events to broaden the definition of an exhibition - which is ultimately an art event. I also intend for events to also cover art day outs, such as a walk where one might take inspo pics and sketches on the journey.
+
+### Visits
+I had visits to gallery as a separate model, however I have updated exhibitions (now events) to have a visited_at date.
+
+### Gallery
+I have updated this now to be location to better encompass the broader nature of the record that it will be keeping.
+
+
 
 ---------------------------------------------------------------------------
 This README would normally document whatever steps are necessary to get the
