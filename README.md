@@ -18,7 +18,7 @@ I originally had the idea that an exhibition could be a touring exhibition, so i
 I have also re-named exhibitions to events to broaden the definition of an exhibition - which is ultimately an art event. I also intend for events to also cover art day outs, such as a walk where one might take inspo pics and sketches on the journey.
 
 ### Visits
-I had visits to gallery as a separate model, however I have updated exhibitions (now events) to have a visited_at date.
+I had the model visits as it's own model to record a visit to a gallery and any other arty events a user might do. However now I have updated exhibitions to events this was no longer needed.
 
 ### Gallery
 I have updated this now to be location to better encompass the broader nature of the record that it will be keeping.
