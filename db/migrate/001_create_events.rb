@@ -7,6 +7,7 @@ class CreateEvents < ActiveRecord::Migration[7.1]
       t.string :url
       t.datetime :start_date
       t.datetime :end_date
+      t.datetime :visited_at
 
       t.timestamps
     end

@@ -1,7 +1,0 @@
-<%= form_with model: Activity.new do |form| %>
-    <%= form.hidden_field :exhibition_id, value: exhibition.id %>
-    <%= form.hidden_field :name, value: "Visit to #{exhibition.exhibition.title}" %>
-
-    <%= form.label :completed_at, 'Date of Visit' %>
-    <%= form.date_field :completed_at %>
-<% end %>

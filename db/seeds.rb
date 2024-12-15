@@ -37,7 +37,9 @@ out_of_earth = Event.create(gallery: approach, title: 'Out of Earth')
 infinity_mirror = Event.create(gallery: tate, title: 'Infinity Mirror Rooms')
 behind_the_red_moon = Event.create(gallery: tate, title: 'Behind the Red Moon')
 sea_and_space = Event.create(gallery: gagosian, title: 'Sea and Space')
-five_ways = Event.create(gallery: whitechapel, title: 'Zadie Xa: House Gods, Animal Guides and Five Ways 2 Forgiveness')
+five_ways = Event.create(gallery: whitechapel, title: 'Zadie Xa: House Gods, Animal Guides and Five Ways 2 Forgiveness', visited_at: 'April 09, 2023')
+Event.create(name: 'walk in epping forest', completed_at: 'June 09, 2023' )
+
 
 # create artists
 bill_lynch = Artist.create(name: 'Bill Lynch', about: 'Influenced by chinese brush painting, painted on found wood.')
@@ -131,10 +133,6 @@ EventArtist.create(event: infinity_mirror, artist: yayoi_kusama)
 EventArtist.create(event: behind_the_red_moon, artist: el_anatsui)
 EventArtist.create(event: sea_and_space, artist: mary_weatherford)
 EventArtist.create(event: five_ways, artist: zadie_xa)
-
-# create activities
-Activity.create(event: five_ways, name: 'whitechapel gallery visit', completed_at: 'April 09, 2023')
-Activity.create(name: 'walk in epping forest', completed_at: 'June 09, 2023' )
 
 # create collections
 one = Collection.create(title: 'Art day out ideas')

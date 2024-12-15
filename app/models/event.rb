@@ -14,8 +14,6 @@ class Event < ApplicationRecord
   has_one_attached :promo_image
   has_many_attached :pdfs
 
-  has_many :activities
-
   accepts_nested_attributes_for :event_artists
   accepts_nested_attributes_for :artists
 
@@ -24,4 +22,10 @@ class Event < ApplicationRecord
   scope :artist, ->(artist) { joins(:artists).where(artists: artist) }
   scope :has_artist, ->(artist_name) { joins(:artists).where(artists: Artist.fuzzy_search(:name, artist_name))} 
 
+
+  has_many :collection_entries, as: :collectionable
+  # has_many_attached :images, dependent: :purge_later
+  has_many_attached :images do |attachable|
+      attachable.variant :thumb, resize_to_limit: [100, 100]
+  end
 end

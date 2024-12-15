@@ -1,9 +1,9 @@
 <div data-controller="image-previews">
-    <%= form_with(model: activity) do |f| %>
+    <%= form_with(model: event) do |f| %>
         <%= f.label :name %>
         <%= f.text_field :name %>
 
-        <% activity.images.each do |image| %>
+        <% event.images.each do |image| %>
             <div class="image-preview">
                 <%= image_tag image, style: "height: 200px; display: inline-block" %>
                 <%= hidden_field_tag "saved_images[]", image.signed_id, id: "hidden_image_#{image.id}" %>

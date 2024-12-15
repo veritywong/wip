@@ -8,6 +8,35 @@
             <%= f.text_field :url %>
         </div>
 
+        <div>
+            <%= f.label :completed_at, 'Date of Visit' %>
+            <%= f.date_field :visited_at %>
+        </div>
+
+        <div>
+            <%= f.label :completed_at, 'Date of Visit' %>
+            <%= f.date_field :start_date %>
+        </div>
+
+        <div>
+            <%= f.label :completed_at, 'Date of Visit' %>
+            <%= f.date_field :end_date %>
+        </div>
+
+        <div>
+            <%= f.label :images, 'Upload Images' %>
+            <%= f.file_field :image, multiple: true %>
+        </div>
+        
+        <%= f.fields_for :artists do |artist_fields| %>
+        <div class="field">
+            <%= artist_fields.label :name, 'Add artist' %>
+            <%= artist_fields.text_field :name %>
+        </div>
+       <% end %>
+
+        
+
         <%= f.fields_for :galleries do |galleries_fields| %>
             <div class="field">
                 <%= galleries_fields.label :gallery_id, 'Gallery' %>
