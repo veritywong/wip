@@ -1,12 +1,7 @@
 Rails.application.routes.draw do
   root "events#index"
 
-  resources :events do
-    collection do
-      get :visited_and_new
-      post :visited_and_new
-    end
-  end
+  resources :events
 
   resources :artists
   resources :collections

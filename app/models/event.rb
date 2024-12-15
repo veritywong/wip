@@ -15,7 +15,7 @@ class Event < ApplicationRecord
   has_many_attached :pdfs
 
   accepts_nested_attributes_for :event_artists
-  accepts_nested_attributes_for :artists
+  accepts_nested_attributes_for :artists, allow_destroy: true
 
   validates_presence_of :title
 

@@ -1,0 +1,53 @@
+    <%= form_with(model: @event) do |f| %>
+        <div>
+            <%= f.label :title %>
+            <%= f.text_field :title %>
+        </div>
+        <div>
+            <%= f.label :url %>
+            <%= f.text_field :url %>
+        </div>
+
+        <div>
+            <%= f.label :visited_at, 'Date of Visit' %>
+            <%= f.date_field :visited_at %>
+        </div>
+
+        <div>
+            <%= f.label :start_date %>
+            <%= f.date_field :start_date %>
+        </div>
+
+        <div>
+            <%= f.label :end_date %>
+            <%= f.date_field :end_date %>
+        </div>
+
+        <div>
+            <%= f.label :images, 'Upload Images' %>
+            <%= f.file_field :images, multiple: true %>
+        </div>
+
+        <%= f.fields_for :event_artists do |event_artists_fields| %>
+            <div class="nested-fields">
+            <%= event_artists_fields.fields_for :artist do |artist_fields| %>
+                <%= artist_fields.label :name, "Artist Name" %>
+                <%= artist_fields.text_field :name %>
+            <% end %>
+
+            <%= event_artists_fields.hidden_field :_destroy %>
+            <%= link_to "Remove Artist", "#", class: "remove_fields" %>
+            </div>
+        <% end %>
+
+        <%= link_to "Add Artist", "#", class: "add_fields", data: { association: "event_artists" } %>
+
+        <div>
+            <%= f.label :gallery_id, 'Gallery' %>
+            <%= f.select :gallery_id, Gallery.all.order(name: :asc).map { |gallery| [gallery.name, gallery.id] }, include_blank: true %>
+        </div>
+
+        <div> 
+            <%= f.submit 'Save' %>
+        </div>
+    <% end %>

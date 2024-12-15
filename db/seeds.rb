@@ -38,7 +38,7 @@ infinity_mirror = Event.create(gallery: tate, title: 'Infinity Mirror Rooms')
 behind_the_red_moon = Event.create(gallery: tate, title: 'Behind the Red Moon')
 sea_and_space = Event.create(gallery: gagosian, title: 'Sea and Space')
 five_ways = Event.create(gallery: whitechapel, title: 'Zadie Xa: House Gods, Animal Guides and Five Ways 2 Forgiveness', visited_at: 'April 09, 2023')
-Event.create(name: 'walk in epping forest', completed_at: 'June 09, 2023' )
+Event.create(title: 'walk in epping forest', visited_at: 'June 09, 2023' )
 
 
 # create artists
