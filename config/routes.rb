@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  root "exhibitions#index"
+  root "events#index"
 
-  resources :exhibitions do
+  resources :events do
     collection do
       get :visited_and_new
       post :visited_and_new

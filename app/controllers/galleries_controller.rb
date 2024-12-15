@@ -9,7 +9,7 @@ class GalleriesController < ApplicationController
     def create
         gallery = Gallery.new(gallery_params)
         if gallery.save
-            redirect_to exhibitions_path
+            redirect_to events_path
         else
             render :new, status: :unprocessable_entity
         end
@@ -21,7 +21,7 @@ class GalleriesController < ApplicationController
 
     def update
         if @gallery.update
-            redirect_to exhibitions_path
+            redirect_to events_path
         else 
             render :new, status: :unprocessable_entity
         end

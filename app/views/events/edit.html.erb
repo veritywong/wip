@@ -1,0 +1,7 @@
+<%= turbo_frame_tag @event do %>
+    <h1>Edit event</h1>
+    <%= render partial: 'event_form', locals: { event: @event } %>
+    <div>
+        <%= link_to 'back', event_path(@event) %>
+    </div>
+<% end %>

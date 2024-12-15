@@ -1,7 +1,0 @@
-<%= turbo_frame_tag @exhibition do %>
-    <h1>Edit Exhibition</h1>
-    <%= render partial: 'exhibition_form', locals: { exhibition: @exhibition } %>
-    <div>
-        <%= link_to 'back', exhibition_path(@exhibition) %>
-    </div>
-<% end %>

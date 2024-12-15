@@ -8,7 +8,7 @@ class Gallery < ApplicationRecord
     belongs_to :organisation, optional: true
     belongs_to :studio, optional: true
 
-    has_many :exhibitions
+    has_many :events
     has_many :gallery_artists, dependent: :destroy
     has_many :artists, through: :gallery_artists
     has_many :opening_times, dependent: :destroy

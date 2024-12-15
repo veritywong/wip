@@ -1,0 +1,16 @@
+<%= turbo_frame_tag @event do %>
+    <h3>
+        <%= @event.title %>
+    </h3>
+    <p>
+        <% @artists.each do |artist| %>
+            <%= artist.name %>
+        <% end %>
+    </p>
+
+        <%= link_to 'visit website', @event.url, target: '_blank' if @event.url.present? %>
+
+    <div>
+        <%= link_to 'edit event', edit_event_path(@event) %>
+    </div>
+<% end %>
