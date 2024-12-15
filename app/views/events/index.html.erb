@@ -9,6 +9,10 @@
       <li>
         <%= link_to event.title, event_path(event) %>
       </li>
+
+      <% if event.images.any? %>
+          <%= image_tag url_for(event.images.first), style: "width: 300px; height: 100%;" %>
+      <% end %>
     <% end %>
   </ul>
 </div>

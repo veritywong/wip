@@ -1,4 +1,5 @@
-<h3><%= link_to @event.title, @event.url, target: '_blank' if @event.url.present? %></h3>
+<h3><%= @event.title %></h3>
+<h4><%= link_to 'link to website', @event.url, target: '_blank' if @event.url.present? %></h4>
 
 <% if @event.end_date %>
     <div>
@@ -28,5 +29,7 @@
         </p>
     </div>
 <% end %>
-
+<div>
+    <%= link_to 'back', events_path %>
+</div>
 <%= link_to 'edit event', edit_event_path(@event) %>
