@@ -1,4 +1,15 @@
-    <%= form_with(model: @event) do |f| %>
+    <% if @event.errors.any? %>
+        <div id='error_message'>
+            <h2><%= pluralize(@event.errors.count, "error")%> prohibited this event from being saved:</h2>
+            <ul>
+                <% @event.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+    
+    <%= form_with model: @event, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |f| %>
         <div>
             <%= f.label :title %>
             <%= f.text_field :title %>
@@ -9,7 +20,7 @@
         </div>
 
         <div>
-            <%= f.label :visited_at, 'Date of Visit' %>
+            <%= f.label :visited_at, 'Date of visit' %>
             <%= f.date_field :visited_at %>
         </div>
 
@@ -28,19 +39,20 @@
             <%= f.file_field :images, multiple: true %>
         </div>
 
-        <%= f.fields_for :event_artists do |event_artists_fields| %>
-            <div class="nested-fields">
-            <%= event_artists_fields.fields_for :artist do |artist_fields| %>
-                <%= artist_fields.label :name, "Artist Name" %>
-                <%= artist_fields.text_field :name %>
+        <template data-nested-form-target="template">
+            <%= f.fields_for :event_artists, EventArtist.new, child_index: 'NEW_RECORD' do |event_artists_fields| %>
+                <%= render "event_artists_form", f: event_artists_fields %>
             <% end %>
+        </template>
 
-            <%= event_artists_fields.hidden_field :_destroy %>
-            <%= link_to "Remove Artist", "#", class: "remove_fields" %>
-            </div>
+        <%= f.fields_for :event_artists do |event_artists_fields| %>
+            <%= render "event_artists_form", f: event_artists_fields %>
         <% end %>
 
-        <%= link_to "Add Artist", "#", class: "add_fields", data: { association: "event_artists" } %>
+        <!-- Inserted elements will be injected before that target. -->
+        <div data-nested-form-target="target"></div>
+
+        <button type="button" data-action="nested-form#add">Add artist</button>
 
         <div>
             <%= f.label :gallery_id, 'Gallery' %>
