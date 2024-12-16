@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :artists
   resources :collections
-  resources :galleries
+  resources :locations
 
   resources :locations, only: [:none] do
     collection do

@@ -65,7 +65,7 @@
 <% end %>
 
 <div data-controller="locations">
-  <%= form_with url: galleries_path, method: :get, data: {turbo_frame: "galleries"} do |form| %>
+  <%= form_with url: locations_path, method: :get, data: {turbo_frame: "locations"} do |form| %>
     <%= form.label :query, "Search location" %>
     <%= form.text_field :query, placeholder: 'Search for a location...', data: { locations_target: "locationInput", action: "input->locations#locationInputChanged" } %>
     <ul data-locations-target="locationDropdown"></ul>

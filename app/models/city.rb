@@ -1,7 +1,7 @@
 class City < ApplicationRecord
     belongs_to :country
     
-    has_many :galleries, dependent: :destroy
+    has_many :locations, dependent: :destroy
     has_many :studios
     has_many :organisations
     

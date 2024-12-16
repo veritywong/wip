@@ -13,7 +13,7 @@ class Artist < ApplicationRecord
     has_many :cities, through: :artist_cities
 
     has_many :location_artists, dependent: :destroy
-    has_many :galleries, through: :location_artists
+    has_many :locations, through: :location_artists
 
     has_many :event_artists, dependent: :destroy
     has_many :events, through: :event_artists#, inverse_of: :artists
@@ -31,7 +31,7 @@ class Artist < ApplicationRecord
 
     def all_associations # is this even necessary? If searching the artist, would there be categories or filters to get this info?
         { events: Event.artist(self), 
-          galleries: Location.artist(self), 
+          locations: Location.artist(self), 
           arts: arts, 
           studio: studio,
           tags: tag_names
