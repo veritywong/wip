@@ -1,4 +1,4 @@
-class GalleryArtist < ApplicationRecord
-    belongs_to :gallery
+class LocationArtist < ApplicationRecord
+    belongs_to :location
     belongs_to :artist
 end

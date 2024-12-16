@@ -1,65 +1,82 @@
-    <% if @event.errors.any? %>
-        <div id='error_message'>
-            <h2><%= pluralize(@event.errors.count, "error")%> prohibited this event from being saved:</h2>
-            <ul>
-                <% @event.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
-                <% end %>
-            </ul>
-        </div>
-    <% end %>
-    
-    <%= form_with model: @event, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |f| %>
-        <div>
-            <%= f.label :title %>
-            <%= f.text_field :title %>
-        </div>
-        <div>
-            <%= f.label :url %>
-            <%= f.text_field :url %>
-        </div>
-
-        <div>
-            <%= f.label :visited_at, 'Date of visit' %>
-            <%= f.date_field :visited_at %>
-        </div>
-
-        <div>
-            <%= f.label :start_date %>
-            <%= f.date_field :start_date %>
-        </div>
-
-        <div>
-            <%= f.label :end_date %>
-            <%= f.date_field :end_date %>
-        </div>
-
-        <div>
-            <%= f.label :images, 'Upload Images' %>
-            <%= f.file_field :images, multiple: true %>
-        </div>
-
-        <template data-nested-form-target="template">
-            <%= f.fields_for :event_artists, EventArtist.new, child_index: 'NEW_RECORD' do |event_artists_fields| %>
-                <%= render "event_artists_form", f: event_artists_fields %>
+<% if @event.errors.any? %>
+    <div id='error_message'>
+        <h2><%= pluralize(@event.errors.count, "error")%> prohibited this event from being saved:</h2>
+        <ul>
+            <% @event.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
             <% end %>
-        </template>
+        </ul>
+    </div>
+<% end %>
 
-        <%= f.fields_for :event_artists do |event_artists_fields| %>
+<%= form_with model: @event, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |f| %>
+    <div>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+    </div>
+    <div>
+        <%= f.label :url %>
+        <%= f.text_field :url %>
+    </div>
+
+    <div>
+        <%= f.label :visited_at, 'Date of visit' %>
+        <%= f.date_field :visited_at %>
+    </div>
+
+    <div>
+        <%= f.label :start_date %>
+        <%= f.date_field :start_date %>
+    </div>
+
+    <div>
+        <%= f.label :end_date %>
+        <%= f.date_field :end_date %>
+    </div>
+
+    <div>
+        <%= f.label :images, 'Upload Images' %>
+        <%= f.file_field :images, multiple: true %>
+    </div>
+
+    <template data-nested-form-target="template">
+        <%= f.fields_for :event_artists, EventArtist.new, child_index: 'NEW_RECORD' do |event_artists_fields| %>
             <%= render "event_artists_form", f: event_artists_fields %>
         <% end %>
+    </template>
 
-        <!-- Inserted elements will be injected before that target. -->
-        <div data-nested-form-target="target"></div>
-
-        <button type="button" data-action="nested-form#add">Add artist</button>
-
-        <div>
-            <%= f.label :gallery_id, 'Gallery' %>
-            <%= f.select :gallery_id, Gallery.all.order(name: :asc).map { |gallery| [gallery.name, gallery.id] }, include_blank: true %>
-        </div>
-
-        <div> 
-            <%= f.submit 'Save' %>
-        </div>
+    <%= f.fields_for :event_artists do |event_artists_fields| %>
+        <%= render "event_artists_form", f: event_artists_fields %>
     <% end %>
+
+    <!-- Inserted elements will be injected before that target. -->
+    <div data-nested-form-target="target"></div>
+
+    <button type="button" data-action="nested-form#add">Add artist</button>
+
+    <div>
+        <%= f.label :location_id, 'Location' %>
+        <%= f.select :location_id, Location.all.order(name: :asc).map { |location| [location.name, location.id] }, include_blank: true %>
+    </div>
+
+    <div> 
+        <%= f.submit 'Save' %>
+    </div>
+<% end %>
+
+<div data-controller="locations">
+  <%= form_with url: galleries_path, method: :get, data: {turbo_frame: "galleries"} do |form| %>
+    <%= form.label :query, "Search location" %>
+    <%= form.text_field :query, placeholder: 'Search for a location...', data: { locations_target: "locationInput", action: "input->locations#locationInputChanged" } %>
+    <ul data-locations-target="locationDropdown"></ul>
+  <% end %>
+</div>
+
+<!--
+  <div class="location-search">
+    <input type="text" id="location-search-input" placeholder="Search for a location..." autocomplete="off">
+    <select id="location-search-results" size="5">
+      Search results will be dynamically added here
+    </select>
+  </div>
+-->

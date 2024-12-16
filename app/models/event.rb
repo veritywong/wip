@@ -3,7 +3,7 @@ class Event < ApplicationRecord
   include Searchable
   include Attachable
 
-  belongs_to :gallery, optional: true
+  belongs_to :location, optional: true
 
   has_many :event_artists, dependent: :destroy
   has_many :artists, through: :event_artists#, inverse_of: :events

@@ -42,7 +42,7 @@ class EventScraper
         
        
         # db_event = event.find_by(title: title)
-        # new_event = event.create(title: title, gallery_name: gallery, url: url, start_date: split_dates[0], end_date: split_dates[1]) if db_event.nil?
+        # new_event = event.create(title: title, location_name: location, url: url, start_date: split_dates[0], end_date: split_dates[1]) if db_event.nil?
         # events << new_event
     end
 
