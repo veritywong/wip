@@ -30,7 +30,7 @@ class EventsController < ApplicationController
             if artist_names.present?
                 artist_names.each do |artist_name|
                   artist = Artist.fuzzy_search(:name, artist_name) || Artist.create(name: artist_name)
-                  EventArtist.create(event: @event, artist: artist)  
+                  EventArtist.create(event: @event, artist: artist)
                 end
             end
             # attach_saved_images
